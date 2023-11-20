@@ -14,14 +14,40 @@ using System.Windows.Shapes;
 
 namespace blanc.Views
 {
-    /// <summary>
-    /// Interaction logic for LoginWindow.xaml
-    /// </summary>
     public partial class LoginWindow : Window
     {
         public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed) 
+            {
+                DragMove();
+            }
+        }
+        private void btnMinimize_Click(Object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+        private void btnClose_Click(Object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+        private void btnLogIn_Click(Object sender, RoutedEventArgs e)
+        {
+            //Login бутона отваря MainWindow прозореца обаче не проверява за login данни
+            //ами просто отваря прозореца
+            MainWindow subWindow = new MainWindow();
+            subWindow.Show();
+            this.Close();
+        }
+        private void BindablePasswordBox_Loaded(object sender, RoutedEventArgs e)
+        {
+
+
         }
     }
 }

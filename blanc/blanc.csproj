@@ -8,9 +8,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\close.png" />
+    <None Remove="Images\fud.png" />
+    <None Remove="Images\lmao.png" />
     <None Remove="Images\logo.bmp" />
     <None Remove="Images\logo.jpg" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\minimize.png" />
+    <None Remove="Images\niga.png" />
+    <None Remove="Images\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\close.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,17 +29,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\fud.png" />
+    <Resource Include="Images\lmao.png" />
     <Resource Include="Images\logo.bmp" />
     <Resource Include="Images\logo.jpg" />
     <Resource Include="Images\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="CustomControls\" />
-    <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
-    <Folder Include="Styles\" />
-    <Folder Include="ViewModels\" />
+    <Resource Include="Images\minimize.png" />
+    <Resource Include="Images\niga.png" />
+    <Resource Include="Images\user.png" />
   </ItemGroup>
 
 </Project>
