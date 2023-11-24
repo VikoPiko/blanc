@@ -29,9 +29,11 @@
                  Converter="{StaticResource BooleanToVisibility}"/>
     </Window.Visibility>
 
+    
     <Border CornerRadius="10"
-            Background="#0F0326"
             BorderThickness="2">
+        
+      
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
@@ -39,6 +41,14 @@
                 <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0.1,0.7" EndPoint="1,0">
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.75"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>

@@ -39,6 +39,18 @@
             </LinearGradientBrush>
         </Border.BorderBrush>
 
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,1" EndPoint="0,1">
+                <GradientStop Color= "{StaticResource winBorderColor1}" Offset="1" />
+                <GradientStop Color= "{StaticResource winBorderColor2}" Offset="0.1"/>
+                <GradientStop Color= "{StaticResource winBorderColor2}" Offset="0"/>
+               
+            </LinearGradientBrush>
+        </Border.Background>
+
+ 
+
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="250"/>
@@ -48,12 +60,7 @@
             <Border CornerRadius="10,0,0,10"
                     Grid.Column="0">
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color= "#280167" Offset="0"/>
-                        <GradientStop Color= "#380167" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+               
 
                 <StackPanel>
 
@@ -63,7 +70,7 @@
                         <Image Source="/Images/logo.png"
                                Margin="20,0,0,0"/>
                         <TextBlock Text="BLANK"
-                                   Foreground="#FFFDD0"
+                                   Foreground="{StaticResource titleColor1}"
                                    FontSize="22"
                                    FontFamily="Montserrat"
                                    FontWeight="Medium"
@@ -154,12 +161,7 @@
             <Border CornerRadius="0,10,10,0"
                     Grid.Column="1">
 
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,1">
-                        <GradientStop Color= "#280137" Offset="0.2"/>
-                        <GradientStop Color= "#280157" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
+               
 
                 <Grid>
                     <Grid.RowDefinitions>

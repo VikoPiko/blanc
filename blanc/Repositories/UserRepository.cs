@@ -21,17 +21,17 @@ namespace blanc.Repositories
 
         public bool AuthenticateUser(NetworkCredential credential)
         {
-            bool validUser;
-            using (var connection = GetConnection())
+            bool validUser = true;
+           /* using (var connection = GetConnection())
             using (var command = new SqlCommand()) 
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [users] where name=@username and [password]=@password";
+                command.CommandText = "select * from [Userrr] where name=@username and [password]=@password";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = credential.UserName;
                 command.Parameters.Add("@password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null?false : true;
-            }
+            }*/
             return validUser;
         }
 
@@ -50,12 +50,12 @@ namespace blanc.Repositories
         public UserModel GetByUsername(string username)
         {
             UserModel user = null;
-            using (var connection = GetConnection())
+         /*   using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "select * from [Users] where name=@username";
+                command.CommandText = "select * from [userrr] where name=@username";
                 command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
                 using (var reader = command.ExecuteReader())
                 {
@@ -70,7 +70,7 @@ namespace blanc.Repositories
                         };
                     }
                 }
-            }
+            }*/
             return user;
         }
 
