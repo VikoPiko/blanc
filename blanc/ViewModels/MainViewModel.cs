@@ -75,6 +75,11 @@ namespace blanc.ViewModels
 
         public ICommand ShowDashboardCommand { get; }
         public ICommand ShowStaffCommand { get; }
+        public ICommand ShowCategoryCommand { get; }
+        public ICommand ShowMenuCommand { get; }
+        public ICommand ShowBillCommand { get; }
+        public ICommand ShowKitchenCommand { get; }
+        public ICommand ShowTablesCommand { get; }
 
         public MainViewModel()
         {
@@ -83,10 +88,48 @@ namespace blanc.ViewModels
 
             ShowDashboardCommand = new ViewModelCommands(ExecuteShowDashboardViewCommand);
             ShowStaffCommand = new ViewModelCommands(ExecuteShowStaffViewCommand);
+            ShowCategoryCommand = new ViewModelCommands(ExecuteShowCategoryCommand);
+            ShowMenuCommand = new ViewModelCommands(ExecuteShowMenuCommand);
+            ShowBillCommand = new ViewModelCommands(ExecuteShowBillCommand);
+            ShowKitchenCommand = new ViewModelCommands(ExecuteShowKitchenCommand);
+            ShowTablesCommand = new ViewModelCommands(ExecuteShowTablesCommand);
 
             ExecuteShowDashboardViewCommand(null);
 
             LoadCurrentUserData();
+        }
+
+        private void ExecuteShowTablesCommand(object obj)
+        {
+            CurrentChildView = new TablesViewModel();
+            Caption = "Tables";
+            Icon = IconChar.Table;
+        }
+
+        private void ExecuteShowKitchenCommand(object obj)
+        {
+            CurrentChildView = new KitchenViewModel();
+            Caption = "Kitchen";
+            Icon = IconChar.CodeFork;
+        }
+
+        private void ExecuteShowBillCommand(object obj)
+        {
+            CurrentChildView = new BillViewModel();
+            Caption = "Bill";
+            Icon = IconChar.CreditCard;
+        }
+        private void ExecuteShowCategoryCommand(object obj)
+        {
+            CurrentChildView = new CategoryViewModel();
+            Caption = "Category";
+            Icon = IconChar.Table;
+        }
+        private void ExecuteShowMenuCommand(object obj)
+        {
+            CurrentChildView = new MenuViewModel();
+            Caption = "Menu";
+            Icon = IconChar.Book;
         }
 
         private void ExecuteShowStaffViewCommand(object obj)

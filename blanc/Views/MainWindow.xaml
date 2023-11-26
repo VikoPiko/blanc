@@ -26,6 +26,21 @@
         <DataTemplate DataType="{x:Type viewModel:StaffViewModel}">
             <local:StaffView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:CategoryViewModel}">
+            <local:CategoryView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+            <local:MenuView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:BillViewModel}">
+            <local:BillView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:KitchenViewModel}">
+            <local:KitchenView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TablesViewModel}">
+            <local:TablesView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -90,8 +105,21 @@
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding ShowCategoryCommand}"
+                                 IsChecked="True">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Table"
+                                          Style="{StaticResource ResourceKey=menuButtonIcon}"/>
+                            <TextBlock Text="Category"
+                                       Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                  Command="{Binding ShowMenuCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpen"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -100,7 +128,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowBillCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CreditCard"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -119,7 +148,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color7}">
+                                 Tag="{StaticResource color7}"
+                                 Command="{Binding ShowKitchenCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Utensils"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -128,7 +158,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color8}">
+                                 Tag="{StaticResource color8}"
+                                 Command="{Binding ShowTablesCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="List"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>

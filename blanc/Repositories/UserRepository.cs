@@ -21,8 +21,8 @@ namespace blanc.Repositories
 
         public bool AuthenticateUser(NetworkCredential credential)
         {
-            bool validUser = true;
-           /* using (var connection = GetConnection())
+            bool validUser= true;
+          /*  using (var connection = GetConnection())
             using (var command = new SqlCommand()) 
             {
                 connection.Open();
@@ -50,7 +50,7 @@ namespace blanc.Repositories
         public UserModel GetByUsername(string username)
         {
             UserModel user = null;
-         /*   using (var connection = GetConnection())
+         /*  using (var connection = GetConnection())
             using (var command = new SqlCommand())
             {
                 connection.Open();
