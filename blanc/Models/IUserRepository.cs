@@ -18,6 +18,7 @@ namespace blanc.Models
         UserModel GetByUsername(string username);
         IEnumerable<UserModel> GetByAll();
 
+
         //object GetByUsername(IPrincipal? currentPrincipal);
     }
 }

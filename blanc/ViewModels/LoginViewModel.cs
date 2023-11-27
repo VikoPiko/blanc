@@ -1,5 +1,6 @@
 ﻿using blanc.Models;
 using blanc.Repositories;
+using blanc.Views;
 using System.Net;
 using System.Security;
 using System.Security.Principal;

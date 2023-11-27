@@ -26,6 +26,21 @@
         <DataTemplate DataType="{x:Type viewModel:StaffViewModel}">
             <local:StaffView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+            <local:MenuView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:BillViewModel}">
+            <local:BillView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:KitchenViewModel}">
+            <local:KitchenView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TablesViewModel}">
+            <local:TablesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <local:SettingsView/>
+        </DataTemplate>
     </Window.Resources>
 
     <Border CornerRadius="10"
@@ -91,7 +106,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}">
+                                 Tag="{StaticResource color2}"
+                                 Command="{Binding ShowMenuCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpen"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -100,7 +116,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}">
+                                 Tag="{StaticResource color3}"
+                                 Command="{Binding ShowBillCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CreditCard"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -119,7 +136,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color7}">
+                                 Tag="{StaticResource color7}"
+                                 Command="{Binding ShowKitchenCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Utensils"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -128,7 +146,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color8}">
+                                 Tag="{StaticResource color8}"
+                                 Command="{Binding ShowTablesCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="List"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -137,7 +156,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color9}">
+                                 Tag="{StaticResource color9}"
+                                 Command="{Binding ShowSettingsCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gear"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -146,7 +166,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color10}">
+                                 Tag="{StaticResource color10}"
+                                 Click="btnLogout_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="RightToBracket"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>

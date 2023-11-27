@@ -5,6 +5,11 @@ using System.Runtime;
 using System.Windows.Forms.VisualStyles;
 using System;
 using System.Windows.Interop;
+using blanc.Repositories;
+using System.Net;
+using System.Threading;
+using blanc.ViewModels;
+using blanc.Models;
 
 namespace blanc.Views
 {
@@ -14,12 +19,6 @@ namespace blanc.Views
         {
             InitializeComponent();
             this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight;
-        }
-        private void exitButton_Click(object sender, RoutedEventArgs e)
-        {
-            LoginWindow subWindow = new LoginWindow();
-            subWindow.Show();
-            this.Close();
         }
 
         [DllImport("user32.dll")]
@@ -47,6 +46,13 @@ namespace blanc.Views
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnLogout_Click(object sender, RoutedEventArgs e) // ---FIX -> FIGURE OUT LOGOUT FUNCTIONALITY!!!!
+        {
+            LoginWindow subWindow = new LoginWindow();
+            subWindow.Show();
+            this.Close();
         }
     }
 }

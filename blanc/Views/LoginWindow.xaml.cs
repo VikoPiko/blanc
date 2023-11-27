@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Printing;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -38,15 +39,12 @@ namespace blanc.Views
         }
         private void btnLogIn_Click(Object sender, RoutedEventArgs e)
         {
-            //Login бутона отваря MainWindow прозореца обаче не проверява за login данни
-            //ами просто отваря прозореца
             MainWindow subWindow = new MainWindow();
             subWindow.Show();
             this.Close();
         }
         private void BindablePasswordBox_Loaded(object sender, RoutedEventArgs e)
         {
-
 
         }
     }
