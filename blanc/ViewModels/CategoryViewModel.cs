@@ -65,7 +65,10 @@ namespace blanc.ViewModels
         {
             if (SelectedReservation != null)
             {
+
+               
                 Reservations.Remove(SelectedReservation);
+               
             }
         }
     }
