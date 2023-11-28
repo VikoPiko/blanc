@@ -3,12 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:blanc.Views"
+             xmlns:viewModel="clr-namespace:blanc.ViewModels"
+             xmlns:vm="clr-namespace:blanc.ViewModels"
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="Transparent">
+
+    <UserControl.DataContext>
+        <vm:CategoryViewModel/>
+    </UserControl.DataContext>
+
+
+
     <Border>
+
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -20,7 +29,7 @@
 
             <Border Grid.Row="0" CornerRadius="20">
 
-                
+
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                         <GradientStop Color="{DynamicResource BackgroundColor3}" Offset="0"/>
@@ -31,31 +40,55 @@
                 </Border.Background>
 
 
-                <StackPanel>
-                <TextBlock Text="Category List"
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Category List"
                  Foreground="{StaticResource titleColor1}"
                  FontSize="22"
                  FontFamily="Montserrat"
                  FontWeight="Medium"
                  VerticalAlignment="Center"
                  Margin="20,10,0,10"/>
-                <!-- da se dobavi commanda-->
-                    <RadioButton Style="{StaticResource addButtton}" 
-                             VerticalAlignment="Top"
-                             HorizontalAlignment="Left"
-                             Tag="{StaticResource color5}"
-                             IsChecked="True"
-                             >
-                   
-                    <StackPanel  Margin="10,0,0,0">
-                            <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
-                        </StackPanel>
-                   
-                 
-                </RadioButton>
-                </StackPanel>
-            </Border>
+                    <!-- da se dobavi commanda-->
 
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                        <RadioButton Style="{StaticResource addButtton}" 
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Tag="{StaticResource color5}"
+                     IsChecked="True"
+                     Command="{Binding AddReservationCommand}">
+                            <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
+                        </RadioButton>
+
+                        <!-- Нов Бутон -->
+                        <RadioButton Style="{StaticResource addButtton}" 
+                                     VerticalAlignment="Top"
+                                     HorizontalAlignment="Left"
+                                     Tag="{StaticResource color5}"
+                                     IsChecked="True"
+                                     Command="{Binding RemoveReservationCommand}">
+                            <fa:IconImage Icon="Minus" Style="{StaticResource ResourceKey=AddCategory}" />
+                        </RadioButton>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <TextBox Width="200" Text="{Binding InputNumber, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+                    <TextBox Width="200" Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+                    <ListView ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}" Name="CategoryList" Foreground="Black" Background="White" Height="600">
+                        <ListView.View>
+                            <GridView ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <GridViewColumn Header="Id#" Width="50" DisplayMemberBinding="{Binding Id}"/>
+                                <GridViewColumn Header="Num" Width="200" DisplayMemberBinding="{Binding Number}"/>
+                                <GridViewColumn Header="Name" Width="400" DisplayMemberBinding="{Binding Name}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Grid>
         </Grid>
 
 

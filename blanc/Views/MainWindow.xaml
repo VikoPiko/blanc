@@ -19,6 +19,8 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
+  
+
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModel:DashboardViewModel}">
             <local:DashboardView/>
