@@ -115,7 +115,7 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Category"
+                            <TextBlock Text="Reservation"
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>

@@ -122,7 +122,7 @@ namespace blanc.ViewModels
         private void ExecuteShowCategoryCommand(object obj)
         {
             CurrentChildView = new CategoryViewModel();
-            Caption = "Category";
+            Caption = "Reservation";
             Icon = IconChar.Table;
         }
         private void ExecuteShowMenuCommand(object obj)
