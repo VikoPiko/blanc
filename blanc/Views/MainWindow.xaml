@@ -28,9 +28,6 @@
         <DataTemplate DataType="{x:Type viewModel:StaffViewModel}">
             <local:StaffView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModel:CategoryViewModel}">
-            <local:CategoryView/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
             <local:MenuView/>
         </DataTemplate>
@@ -42,6 +39,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:TablesViewModel}">
             <local:TablesView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <local:SettingsView/>
         </DataTemplate>
     </Window.Resources>
 
@@ -115,13 +115,13 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Reservation"
+                            <TextBlock Text="Category"
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
-                                  Command="{Binding ShowMenuCommand}">
+                                 Command="{Binding ShowMenuCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="BookOpen"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -170,7 +170,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color9}">
+                                 Tag="{StaticResource color9}"
+                                 Command="{Binding ShowSettingsCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Gear"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -179,7 +180,8 @@
                         </StackPanel>
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color10}">
+                                 Tag="{StaticResource color10}"
+                                 Click="btnLogout_Click">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="RightToBracket"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
