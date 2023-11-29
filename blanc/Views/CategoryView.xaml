@@ -41,7 +41,7 @@
 
 
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Category List"
+                    <TextBlock Text="Table Reservation"
                  Foreground="{StaticResource titleColor1}"
                  FontSize="22"
                  FontFamily="Montserrat"
@@ -76,7 +76,17 @@
             </Border>
             <Grid Grid.Row="1">
                 <StackPanel>
+                    <TextBlock Text="Number of Guests" 
+                               Style="{StaticResource menuButtonText}" 
+                               Foreground="{StaticResource plainTextColor1}"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
                     <TextBox Width="200" Text="{Binding InputNumber, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
+                    <TextBlock Text="Name of Reservation" 
+            Style="{StaticResource menuButtonText}" 
+            Foreground="{StaticResource plainTextColor1}"
+            HorizontalAlignment="Center"
+            Margin="0,-2,0,0"/>
                     <TextBox Width="200" Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
                     <ListView ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}" Name="CategoryList" Foreground="Black" Background="White" Height="600">
                         <ListView.View>
