@@ -1,4 +1,4 @@
-﻿using blanc.Models;
+using blanc.Models;
 using blanc.Repositories;
 using System;
 using System.Collections.Generic;
@@ -22,6 +22,16 @@ namespace blanc.ViewModels
         private IconChar _icon;
 
         private IUserRepository userRepository;
+
+        private BillViewModel _billModel;
+        private TablesViewModel _tablesViewModel;
+        private CategoryViewModel _categoryViewModel;
+        private KitchenViewModel _kitchenViewModel;
+        private MenuViewModel _menuViewModel;
+        private StaffViewModel _staffViewModel;
+        private DashboardViewModel _dashboardViewModel;
+        
+
 
         public UserAccountModel? CurrentUserAccount
         {
@@ -101,46 +111,77 @@ namespace blanc.ViewModels
 
         private void ExecuteShowTablesCommand(object obj)
         {
-            CurrentChildView = new TablesViewModel();
+            if (_tablesViewModel == null) 
+            {
+                _tablesViewModel = new TablesViewModel();
+            }
+
+            CurrentChildView = _tablesViewModel;
             Caption = "Tables";
             Icon = IconChar.Table;
         }
 
         private void ExecuteShowKitchenCommand(object obj)
         {
-            CurrentChildView = new KitchenViewModel();
+            if (_kitchenViewModel == null)
+            {
+                _kitchenViewModel = new KitchenViewModel();
+            }
+            CurrentChildView = _kitchenViewModel;
             Caption = "Kitchen";
             Icon = IconChar.CodeFork;
         }
 
         private void ExecuteShowBillCommand(object obj)
         {
-            CurrentChildView = new BillViewModel();
+            if (_billModel == null)
+            {
+                _billModel = new BillViewModel();
+            }
+            CurrentChildView = _billModel;
             Caption = "Bill";
             Icon = IconChar.CreditCard;
         }
         private void ExecuteShowCategoryCommand(object obj)
         {
-            CurrentChildView = new CategoryViewModel();
+
+            if (_categoryViewModel == null)
+            {
+                _categoryViewModel = new CategoryViewModel();
+            }
+            CurrentChildView = _categoryViewModel;
             Caption = "Reservation";
             Icon = IconChar.Table;
         }
         private void ExecuteShowMenuCommand(object obj)
         {
-            CurrentChildView = new MenuViewModel();
+
+            if (_menuViewModel == null)
+            {
+                _menuViewModel = new MenuViewModel();
+            }
+            CurrentChildView = _menuViewModel;
             Caption = "Menu";
             Icon = IconChar.Book;
         }
 
         private void ExecuteShowStaffViewCommand(object obj)
         {
-            CurrentChildView = new StaffViewModel();
+            if (_staffViewModel == null)
+            {
+                _staffViewModel = new StaffViewModel();
+            }
+            CurrentChildView = _staffViewModel;
             Caption = "Staff";
             Icon = IconChar.UserGroup;
         }
         private void ExecuteShowDashboardViewCommand(object? obj)
         {
-            CurrentChildView = new DashboardViewModel();
+            if (_dashboardViewModel == null)
+            {
+                _dashboardViewModel = new DashboardViewModel();
+            }
+            CurrentChildView = _dashboardViewModel;
             Caption = "Dashboard";
             Icon = IconChar.Home;
         }
