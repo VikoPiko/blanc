@@ -1,4 +1,6 @@
-﻿using blanc.Models;
+using blanc.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,11 +9,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Text.Json;
+using System.IO;
 
 namespace blanc.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
+        const string fileName = "WeatherForecast.json";
+
+
         private ObservableCollection<Reservation> _reservations;
         private Reservation _selectedReservation;
         public ObservableCollection<Reservation> Reservations
@@ -34,10 +41,23 @@ namespace blanc.ViewModels
         {
             RemoveReservationCommand = new RelayCommand(RemoveReservation, CanRemoveReservation);
             Reservations = new ObservableCollection<Reservation>();
-            AddReservationCommand = new RelayCommand(AddReservation);
+            AddReservationCommand = new RelayCommand(AddReservationAsync);
+
+
+            string rawJson = File.ReadAllText(fileName);
+
+            List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(rawJson);
+            
+            if(reservations != null)
+            {
+                foreach (var item in reservations)
+                {
+                    Reservations.Add(item);
+                }
+            } 
         }
 
-        private void AddReservation()
+        private void AddReservationAsync()
         {
             var newReservation = new Reservation
             {
@@ -47,6 +67,23 @@ namespace blanc.ViewModels
             };
 
             Reservations.Add(newReservation);
+
+            List<Reservation> reservations = new List<Reservation>();
+
+            foreach (Reservation reservation in Reservations)
+            {
+                reservations.Add(new Reservation()
+                {
+                    Id = reservation.Id,
+                    Name = reservation.Name,
+                    Number = reservation.Number,
+                });
+            }
+
+            string json = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+
+
+            File.WriteAllText(fileName, json);
         }
       
         public Reservation SelectedReservation
@@ -60,6 +97,9 @@ namespace blanc.ViewModels
         {
             return SelectedReservation != null;
         }
+
+
+
 
         private void RemoveReservation()
         {
