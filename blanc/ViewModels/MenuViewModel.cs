@@ -1,12 +1,19 @@
 ﻿using blanc.Models;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
 using System.Windows.Input;
 
 namespace blanc.ViewModels
 {
     public class MenuViewModel : ViewModelBase
     {
+
+        const string menuItems = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Menu.json";
+
         private ObservableCollection<Menu>? _items;
         private Menu? _selectedItems;
         public ObservableCollection<Menu> Items
@@ -23,52 +30,25 @@ namespace blanc.ViewModels
 
         public ICommand RemoveItemCommand { get; private set; }
 
+       
         public MenuViewModel()
         {
-            RemoveItemCommand = new RelayCommand(RemoveItem, CanRemoveItem);
-            Items = new ObservableCollection<Menu>();
             AddItemCommand = new RelayCommand(AddItem);
+            Items = new ObservableCollection<Menu>();
+            RemoveItemCommand = new RelayCommand(RemoveItem);
 
-            var burger = new Menu
+
+            string rawJson = File.ReadAllText(menuItems);
+
+            List<Menu> items = JsonConvert.DeserializeObject<List<Menu>>(rawJson);
+
+            if (items != null)
             {
-                ID_Menu = 0,
-                Name = "Burger",
-                Description = "Tasty",
-                Price = 8.99f
-            };
-            Items.Add(burger);
-            var fries = new Menu
-            {
-                ID_Menu = 1,
-                Name = "Fries",
-                Description = "Crispy",
-                Price = 3.99f
-            };
-            Items.Add(fries);
-            var salad = new Menu
-            {
-                ID_Menu = 2,
-                Name = "Salad",
-                Description = "Boring",
-                Price = 14.99f
-            };
-            Items.Add(salad);
-            var steak = new Menu
-            {
-                ID_Menu = 3,
-                Name = "Steak",
-                Description = "SO FUCKING JUICY",
-                Price = 11.99f
-            };
-            Items.Add(steak);
-            var pizza = new Menu
-            {
-                ID_Menu = 4,
-                Name = "Pizza",
-                Description = "Just pizza",
-                Price = 6.99f
-            };
-            Items.Add(pizza);
+                foreach (var item in items)
+                {
+                    Items.Add(item);
+                }
+            }
         }
 
         private void AddItem()
@@ -81,6 +61,24 @@ namespace blanc.ViewModels
                 Price = ItemPrice
             };
             Items.Add(newItem);
+
+            List<Menu> items = new List<Menu>();
+
+            foreach (Menu it in Items)
+            {
+                items.Add(new Menu()
+                {
+                    ID_Menu = it.ID_Menu,
+                    Name = it.Name,
+                    Description = it.Description,
+                    Price = it.Price,
+                });
+            }
+
+            string json = JsonConvert.SerializeObject(items, Formatting.Indented);
+
+            
+            File.WriteAllText(menuItems, json);
         }
 
         public Menu? SelectedItem
@@ -96,6 +94,29 @@ namespace blanc.ViewModels
 
         private void RemoveItem()
         {
+            if (SelectedItem == null)
+            {
+                return; // Nothing to remove
+            }
+
+            // Read the file
+            string jsonContent = File.ReadAllText(menuItems);
+            List<Menu> items = JsonConvert.DeserializeObject<List<Menu>>(jsonContent);
+
+            // Finding and removing the chosen ONE
+            var itemToRemove = items.FirstOrDefault(r => r.ID_Menu == SelectedItem.ID_Menu);
+            if (itemToRemove != null)
+            {
+                items.Remove(itemToRemove);
+
+                // Serializing the object again into JSON
+                string updatedJson = JsonConvert.SerializeObject(items, Formatting.Indented);
+
+                // Saving the JSON file again
+                File.WriteAllText(menuItems, updatedJson);
+            }
+
+            //Update front-end upon  deleting
             if (SelectedItem != null)
             {
                 Items.Remove(SelectedItem);

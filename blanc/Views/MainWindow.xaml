@@ -113,7 +113,7 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowCategoryCommand}">
+                                 Command="{Binding ShowCategoryCommand}" Checked="RadioButton_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -183,7 +183,7 @@
                     </RadioButton>
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color10}"
-                                 Click="btnLogout_Click">
+                                 Click="btnLogout_Click" Checked="RadioButton_Checked_1">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="RightToBracket"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>

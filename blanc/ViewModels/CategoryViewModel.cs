@@ -16,7 +16,7 @@ namespace blanc.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
-        const string fileName = "WeatherForecast.json";
+        const string fileName = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Reservations.json";
 
 
         private ObservableCollection<Reservation> _reservations;
@@ -103,6 +103,29 @@ namespace blanc.ViewModels
 
         private void RemoveReservation()
         {
+            if (SelectedReservation == null)
+            {
+                return; // Nothing to remove
+            }
+
+            // Read the file
+            string jsonContent = File.ReadAllText(fileName);
+            List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonContent);
+
+            // Finding and removing the chosen ONE
+            var reservationToRemove = reservations.FirstOrDefault(r => r.Id == SelectedReservation.Id);
+            if (reservationToRemove != null)
+            {
+                reservations.Remove(reservationToRemove);
+
+                // Serializing the object again into JSON
+                string updatedJson = JsonConvert.SerializeObject(reservations, Formatting.Indented);
+
+                // Saving the JSON file again
+                File.WriteAllText(fileName, updatedJson);
+            }
+
+            //Update front-end upon  deleting
             if (SelectedReservation != null)
             {
                 Reservations.Remove(SelectedReservation);

@@ -24,5 +24,13 @@ namespace blanc.Views
         {
             InitializeComponent();
         }
+
+        private void OpenMiniWindow_Click(object sender, RoutedEventArgs e)
+        {
+            
+                MiniTable miniWindow = new MiniTable(this);
+                miniWindow.ShowDialog(); // or miniWindow.ShowDialog() if you want it to be modal
+            
+        }
     }
 }
