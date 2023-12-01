@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace blanc.Views
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class MiniTable : Window
     {
         private TablesView _mainWindow;

@@ -12,7 +12,7 @@ namespace blanc.ViewModels
     public class MenuViewModel : ViewModelBase
     {
 
-        const string menuItems = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Menu.json";
+        const string menuItems = "Menu.json";
 
         private ObservableCollection<Menu>? _items;
         private Menu? _selectedItems;
@@ -22,8 +22,8 @@ namespace blanc.ViewModels
             set { _items = value; OnPropertyChanged(nameof(Items)); }
         }
 
-        public string ItemName { get; set; }
-        public string ItemDescription { get; set; }
+        public string? ItemName { get; set; }
+        public string? ItemDescription { get; set; }
         public float ItemPrice { get; set; }
 
         public ICommand AddItemCommand { get; private set; }
@@ -40,7 +40,7 @@ namespace blanc.ViewModels
 
             string rawJson = File.ReadAllText(menuItems);
 
-            List<Menu> items = JsonConvert.DeserializeObject<List<Menu>>(rawJson);
+            List<Menu>? items = JsonConvert.DeserializeObject<List<Menu>>(rawJson);
 
             if (items != null)
             {

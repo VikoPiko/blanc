@@ -16,7 +16,7 @@ namespace blanc.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
-        const string fileName = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Reservations.json";
+        const string fileName = "Reservations.json";
 
 
         private ObservableCollection<Reservation> _reservations;
@@ -110,7 +110,7 @@ namespace blanc.ViewModels
 
             // Read the file
             string jsonContent = File.ReadAllText(fileName);
-            List<Reservation> reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonContent);
+            List<Reservation>? reservations = JsonConvert.DeserializeObject<List<Reservation>>(jsonContent);
 
             // Finding and removing the chosen ONE
             var reservationToRemove = reservations.FirstOrDefault(r => r.Id == SelectedReservation.Id);

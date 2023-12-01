@@ -8,11 +8,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Border Background="Bisque">
         <Grid>
-            <TextBlock Text="HUI HAHAHAHAH"
-                       FontSize="69"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
-            <Button Content="Open Mini Window" Click="OpenMiniWindow_Click" HorizontalAlignment="Left" Height="30" Margin="122,58,0,0" VerticalAlignment="Top" Width="161"/>
+            <Button Content="Open Mini Window"
+                    Click="OpenMiniWindow_Click"
+                    HorizontalAlignment="Left"
+                    Height="30"
+                    Margin="122,58,0,0" 
+                    VerticalAlignment="Top"
+                    Width="161"/>
         </Grid>
     </Border>
 </UserControl>
