@@ -13,40 +13,102 @@
         <vm:MenuViewModel/>
     </UserControl.DataContext>
 
-    <Border Background="#5F4B66">
-        <StackPanel>
-            <TextBlock Height="50"
-                       Text="Menu Items"
-                       Foreground="White"
-                       FontSize="30"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontFamily="Montserrat"
-                       FontWeight="Medium"/>
-            <ListView ItemsSource="{Binding Items}"
+    <Border>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Border Grid.Row="0" CornerRadius="10"
+                    Background="Gray">
+
+
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Menu Items"
+                               Foreground="{StaticResource titleColor1}"
+                               FontSize="22"
+                               FontFamily="Montserrat"
+                               FontWeight="Medium"
+                               VerticalAlignment="Center"
+                               Margin="20,10,0,10"/>
+                    <!-- da se dobavi commanda-->
+                    <!--KAKVA ?????-->
+                    <StackPanel Orientation="Horizontal"
+                                Margin="10,0,0,0">
+                        <Button Height="30" Width="75"
+                                Content="Add Item"
+                                Command="{Binding AddItemCommand}"/>
+
+                        <!-- Нов Бутон -->
+                        <Button Height="30" Width="80"
+                                Content="Remove Item"
+                                Margin="10,0,0,0"
+                                Command="{Binding RemoveItemCommand}"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Border>
+            <Grid Grid.Row="1">
+                <StackPanel>
+                    <TextBlock Text="Name of Item" 
+                           Style="{StaticResource menuButtonText}" 
+                           Foreground="{StaticResource plainTextColor1}"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+                    <TextBox Width="150"
+                             HorizontalAlignment="Center"
+                             Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,0"/>
+                    <TextBlock Text="Item Description" 
+                               Style="{StaticResource menuButtonText}" 
+                               Foreground="{StaticResource plainTextColor1}"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    <TextBox Width="200"
+                             Text="{Binding ItemDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,5"
+                             HorizontalAlignment="Center"/>
+                    <TextBlock Text="Item Price" 
+                           Style="{StaticResource menuButtonText}" 
+                           Foreground="{StaticResource plainTextColor1}"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+                    <TextBox Width="150"
+                             HorizontalAlignment="Center"
+                             Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,5"/>
+
+                    <ListView ItemsSource="{Binding Items}"
                               SelectedItem="{Binding SelectedItem}"
                               Name="CategoryList"
                               Foreground="Black"
-                              HorizontalAlignment="Left"
-                              Background="white"
-                              Height="600">
-            <ListView.View>
-                <GridView ScrollViewer.VerticalScrollBarVisibility="Visible">
-                    <GridViewColumn Header="Id#" 
+                              Background="White"
+                               Height="600">
+                        <ListView.View>
+                            <GridView ScrollViewer.VerticalScrollBarVisibility="Visible">
+                                <GridViewColumn Header="Id#" 
                                                 Width="40"
                                                 DisplayMemberBinding="{Binding ID_Menu}"/>
-                    <GridViewColumn Header="Name"
-                                                Width="150" 
+                                <GridViewColumn Header="Name"
+                                                 Width="150" 
                                                 DisplayMemberBinding="{Binding Name}"/>
-                    <GridViewColumn Header="Description" 
+                                <GridViewColumn Header="Description"
                                                 Width="500"
                                                 DisplayMemberBinding="{Binding Description}"/>
-                    <GridViewColumn Header="Price"
+                                <GridViewColumn Header="Price"
                                                 Width="110"
                                                 DisplayMemberBinding="{Binding Price}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        </StackPanel>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Border>
 </UserControl>

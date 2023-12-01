@@ -12,7 +12,7 @@ namespace blanc.ViewModels
     public class MenuViewModel : ViewModelBase
     {
 
-        const string menuItems = "Menu.json";
+        const string menuItems = "D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Menu.json";
 
         private ObservableCollection<Menu>? _items;
         private Menu? _selectedItems;

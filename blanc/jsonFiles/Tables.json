@@ -1,29 +1,8 @@
-{
-  "tables": [
-    {
-      "tableId": 1,
-      "seats": 4,
-      "orderedItems": []
-    },
-    {
-      "tableId": 2,
-      "seats": 4,
-      "orderedItems": []
-    },
-    {
-      "tableId": 3,
-      "seats": 6,
-      "orderedItems": []
-    },
-    {
-      "tableId": 4,
-      "seats": 6,
-      "orderedItems": []
-    },
-    {
-      "tableId": 5,
-      "seats": 10,
-      "orderedItems": []
-    }
-  ]
-}
+[
+  {
+    "tableId": 1,
+    "seats": 0,
+    "orderedItems": null,
+    "bill": null
+  }
+]

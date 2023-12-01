@@ -16,7 +16,7 @@ namespace blanc.ViewModels
 {
     public class CategoryViewModel : ViewModelBase
     {
-        const string fileName = "Reservations.json";
+        const string fileName = "D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Reservations.json";
 
 
         private ObservableCollection<Reservation> _reservations;

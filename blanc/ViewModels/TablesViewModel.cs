@@ -17,7 +17,7 @@ namespace blanc.ViewModels
 {
     public class TablesViewModel : ViewModelBase
     {
-        const string tables = "Tables.json";
+        const string tables = "D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json";
 
         private ObservableCollection<TableModel>? _tables;
         private TableModel? _selectedTable;
@@ -40,26 +40,86 @@ namespace blanc.ViewModels
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
-        public ICommand AddMenuItemCommand {  get; private set; }
-        public ICommand RemoveMenuItemCommand {  get; private set; }
+      //  public ICommand AddMenuItemCommand {  get; private set; }
+      //  public ICommand RemoveMenuItemCommand {  get; private set; }
         public ICommand PayBillCommand {  get; private set; }
-        public ICommand SplitTableCommand {  get; private set; }
-        public ICommand JoinTableCommand {  get; private set; }
+       /* public ICommand SplitTableCommand {  get; private set; }
+        public ICommand JoinTableCommand {  get; private set; }*/
         public TablesViewModel() 
         {
             AddTableCommand = new RelayCommand(AddTable);
             AddBillCommand = new RelayCommand(AddBill);
             PayBillCommand = new RelayCommand(PayBill);
+            RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
+
+            Tables = new ObservableCollection<TableModel>();
 
             string rawJson = File.ReadAllText(tables);
-            List<TableModel>? reservations = JsonConvert.DeserializeObject<List<TableModel>>(rawJson);
+            List<TableModel>? table = JsonConvert.DeserializeObject<List<TableModel>>(rawJson);
 
+            if (table != null)
+            {
+                foreach (var item in table)
+                {
+                    Tables.Add(item);
+                }
+            }
 
         }
 
         private void AddTable()
         {
-            throw new NotImplementedException();
+
+            var newTable = new TableModel
+            {
+                tableId = Tables.Count + 1,
+                seats = seats
+
+            };
+            Tables.Add(newTable);
+
+            List<TableModel> table = new List<TableModel>();
+
+            foreach (TableModel item in Tables)
+            {
+                table.Add(new TableModel()
+                {
+                    tableId = item.tableId,
+                    seats = item.seats
+                });
+            }
+            string json = JsonConvert.SerializeObject(table, Formatting.Indented);
+
+
+            File.WriteAllText(tables, json);
+
+
+        }
+        private bool CanRemoveTable()
+        {
+            return _selectedTable != null;
+        }
+
+        private void RemoveTable()
+        {
+            if (_selectedTable != null)
+            {
+                Tables.Remove(_selectedTable);
+
+                string json = JsonConvert.SerializeObject(Tables, Formatting.Indented);
+                File.WriteAllText(tables, json);
+            }
+        }
+
+        public TableModel? SelectedTable
+        {
+            get { return _selectedTable; }
+            set
+            {
+                _selectedTable = value;
+                OnPropertyChanged(nameof(SelectedTable));
+                CommandManager.InvalidateRequerySuggested();
+            }
         }
         private void AddBill()
         {

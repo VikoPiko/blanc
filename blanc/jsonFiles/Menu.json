@@ -1,32 +1,32 @@
 [
-    {
-      "itemID": 1,
-      "itemName": "a hembaga",
-      "itemDescription": "a meeat hembaaga",
-      "itemPrice": 6.99
-    },
-    {
-      "itemID": 2,
-      "itemName": "crissspy friiies",
-      "itemDescription": "mmmmm cwispy",
-      "itemPrice": 11.99
-    },
-    {
-      "itemID": 3,
-      "itemName": "salad",
-      "itemDescription": "bhleeeegh, salads. ew.",
-      "itemPrice": 69.99
-    },
-    {
-      "itemID": 4,
-      "itemName": "pizzzzzzzzzuh",
-      "itemDescription": "cant get better than this",
-      "itemPrice": 3.99
-    },
-    {
-      "itemID": 5,
-      "itemName": "Steak",
-      "itemDescription": "the holy grail of food",
-      "itemPrice": 9.11
-    }
-  ]
+  {
+    "ID_Menu": 0,
+    "Name": null,
+    "Description": null,
+    "Price": 0.0
+  },
+  {
+    "ID_Menu": 0,
+    "Name": null,
+    "Description": null,
+    "Price": 0.0
+  },
+  {
+    "ID_Menu": 0,
+    "Name": null,
+    "Description": null,
+    "Price": 0.0
+  },
+  {
+    "ID_Menu": 0,
+    "Name": null,
+    "Description": null,
+    "Price": 0.0
+  },
+  {
+    "ID_Menu": 5,
+    "Name": "дса",
+    "Description": "садас",
+    "Price": 343.0
+  }
+]

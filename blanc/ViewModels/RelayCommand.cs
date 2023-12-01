@@ -23,6 +23,7 @@ namespace blanc.ViewModels
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
+       
 
         public bool CanExecute(object parameter)
         {
