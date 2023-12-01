@@ -26,7 +26,9 @@ namespace blanc.ViewModels
 
         private ObservableCollection<TableModel>? _tables;
 
-        private TableModel _selectedTable;
+        public TableModel _selectedTable { get; set; }
+        private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
+
         public ObservableCollection<TableModel>? Tables 
         {
             get { return _tables; }
@@ -78,7 +80,6 @@ namespace blanc.ViewModels
             if (this.SelectedTable != null)
             {
 
-
                 // Зареждате всички маси от JSON файла
                 string json = File.ReadAllText("D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json");
                 List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
@@ -86,11 +87,23 @@ namespace blanc.ViewModels
                 // Намерете масата, която отговаря на избраната маса по tableId
                 TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
 
-                // Ако съответната маса е намерена, покажете MiniTable прозореца с тези данни
+                // Ако съответната маса е намерена
                 if (tableToDisplay != null)
                 {
-                    var miniTableView = new MiniTable(tableToDisplay);
-                    miniTableView.Show();
+                    // Проверете дали вече има отворен прозорец за тази маса
+                    if (!openTables.ContainsKey(tableToDisplay.tableId))
+                    {
+                        // Създайте прозореца и го добавете към речника
+                        var miniTableView = new MiniTable(tableToDisplay);
+                        miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
+                        openTables[tableToDisplay.tableId] = miniTableView;
+                        miniTableView.Show();
+                    }
+                    else
+                    {
+                        // Фокусиране на вече отворения прозорец
+                        openTables[tableToDisplay.tableId].Focus();
+                    }
                 }
             }
 
