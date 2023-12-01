@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using blanc.Models;
+using System.Windows;
 using System.Windows.Controls;
 namespace blanc.Views
 {
@@ -16,5 +17,7 @@ namespace blanc.Views
                 miniWindow.ShowDialog(); // or miniWindow.ShowDialog() if you want it to be modal -> ?????????
             
         }
+
+     
     }
 }

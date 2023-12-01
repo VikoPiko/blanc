@@ -8,7 +8,7 @@
         xmlns:viewModel="clr-namespace:blanc.ViewModels"
         mc:Ignorable="d"
         MouseDown="Window_MouseDown"
-        Title="MiniTable"
+        Title="Table Details"
         Background="Transparent"
         Height="600"
         Width="900">

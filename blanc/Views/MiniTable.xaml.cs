@@ -33,5 +33,6 @@ namespace blanc.Views
                 this.DragMove();
             }
         }
+
     }
 }

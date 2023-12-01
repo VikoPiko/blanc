@@ -38,8 +38,42 @@
     <Color x:Key="panelActiveColor1">#F7A9A8</Color>
     <Color x:Key="panelActiveColor2">#E5C3D1</Color>
     <Color x:Key="BackgroundColor">#A7ADC6</Color>
-    <Color x:Key="BackgroundColor2">#8797AF</Color> 
+    <Color x:Key="BackgroundColor2">#8797AF</Color>
     <Color x:Key="BackgroundColor3">#56667A</Color>
 
+    <!-- Data grid style-->
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="RowBackground" Value="#F0F0F0"/>
+        <Setter Property="AlternatingRowBackground" Value="White"/>
+        <Setter Property="HorizontalGridLinesBrush" Value="#DDD"/>
+        <Setter Property="VerticalGridLinesBrush" Value="#DDD"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="RowHeight" Value="30"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+    </Style>
+
+    <!-- Стил за заглавия на колони -->
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#007ACC"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Стил за клетки -->
+    <Style TargetType="DataGridCell">
+        <Setter Property="Padding" Value="10,0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
 
 </ResourceDictionary>
