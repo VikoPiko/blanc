@@ -8,9 +8,9 @@ using System.Windows.Input;
 
 namespace blanc.ViewModels
 {
-    public class MiniTableViewModew: ViewModelBase
+    public class MiniTableViewModel: ViewModelBase
     {
         
-
+      
     }
 }

@@ -14,23 +14,25 @@
         Width="900">
 
     <Window.DataContext>
-        <viewModel:MiniTableViewModew/>
+        <viewModel:MiniTableViewModel/>
     </Window.DataContext>
 
     <Border Background="#56667A"
             CornerRadius="10">
-        
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="68*"/>
+                <ColumnDefinition Width="42*"/>
+                <ColumnDefinition Width="791*"/>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical">
-                <TextBlock  Text="Bill Control"
+            <StackPanel Orientation="Vertical" Grid.ColumnSpan="3">
+                <TextBlock  Text="{Binding tableId}"
                             Foreground="White"
                             FontSize="22"
                             Width="125"
@@ -54,11 +56,11 @@
                             Command="{Binding }">
                     </Button>
                 </StackPanel>
-                
-                
-                
+
+
+
             </StackPanel>
         </Grid>
-        
+
     </Border>
 </Window>

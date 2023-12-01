@@ -33,6 +33,7 @@ namespace blanc.Views
             var viewModel = new TablesViewModel();
             viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
             this.DataContext = viewModel; // Задавате DataContext на прозореца
+            this.DataContext = selectedTable;
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

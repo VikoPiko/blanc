@@ -4,5 +4,11 @@
     "Name": "дса",
     "Description": "садас",
     "Price": 343.0
+  },
+  {
+    "ID_Menu": 2,
+    "Name": "assdf",
+    "Description": "asdf",
+    "Price": 0.0
   }
 ]

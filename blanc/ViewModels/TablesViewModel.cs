@@ -19,10 +19,10 @@ namespace blanc.ViewModels
 {
     public class TablesViewModel : ViewModelBase
     {
-        const string tables = "D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json";
+        const string tables = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Tables.json";
 
 
-        private MiniTableViewModew miniTableViewModew;
+        private MiniTableViewModel miniTableViewModel;
 
         private ObservableCollection<TableModel>? _tables;
 
@@ -45,6 +45,8 @@ namespace blanc.ViewModels
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
+
+        
       //  public ICommand AddMenuItemCommand {  get; private set; }
       //  public ICommand RemoveMenuItemCommand {  get; private set; }
         public ICommand PayBillCommand {  get; private set; }
@@ -72,7 +74,7 @@ namespace blanc.ViewModels
             }
 
         }
-
+        private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
         private void ExecuteMiniTablesCommand()
         {
             if (this.SelectedTable != null)
@@ -80,20 +82,33 @@ namespace blanc.ViewModels
 
 
                 // Зареждате всички маси от JSON файла
-                string json = File.ReadAllText("D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json");
+                string json = File.ReadAllText("C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Tables.json");
                 List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
 
                 // Намерете масата, която отговаря на избраната маса по tableId
                 TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
 
-                // Ако съответната маса е намерена, покажете MiniTable прозореца с тези данни
+               
+
+                // Ако съответната маса е намерена
                 if (tableToDisplay != null)
                 {
-                    var miniTableView = new MiniTable(tableToDisplay);
-                    miniTableView.Show();
+                    // Проверете дали вече има отворен прозорец за тази маса
+                    if (!openTables.ContainsKey(tableToDisplay.tableId))
+                    {
+                        // Създайте прозореца и го добавете към речника
+                        var miniTableView = new MiniTable(tableToDisplay);
+                        miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
+                        openTables[tableToDisplay.tableId] = miniTableView;
+                        miniTableView.Show();
+                    }
+                    else
+                    {
+                        // Фокусиране на вече отворения прозорец
+                        openTables[tableToDisplay.tableId].Focus();
+                    }
                 }
             }
-
         }
 
         private void AddTable()
