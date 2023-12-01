@@ -1,1 +1,20 @@
-[]
+[
+  {
+    "tableId": 1,
+    "seats": 41231,
+    "orderedItems": null,
+    "bill": null
+  },
+  {
+    "tableId": 2,
+    "seats": 2,
+    "orderedItems": null,
+    "bill": null
+  },
+  {
+    "tableId": 3,
+    "seats": 4,
+    "orderedItems": null,
+    "bill": null
+  }
+]

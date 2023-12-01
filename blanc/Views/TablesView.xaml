@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:blanc.Views" 
-              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Border Background="Bisque">
+        
         <Grid>
             <Button Content="Open Table"
         Command="{Binding AddTableCommand}"
@@ -23,19 +26,24 @@
         Margin="10,58,0,0" 
         VerticalAlignment="Top"
         Width="161" />
+
             
-            
+
+
+
+
             <TextBox Width="200" Height="100" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding seats, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
 
             <DataGrid ItemsSource="{Binding Tables}" 
-          SelectedItem="{Binding SelectedTable}" 
-                   
-          AutoGenerateColumns="False" 
-          Height="200" 
-          Foreground="Black" 
-          Background="White"
-                       IsReadOnly="True">
+              SelectedItem="{Binding SelectedTable}" 
+              AutoGenerateColumns="False" 
+              Height="200" 
+              IsReadOnly="False">
+
+               
+
                 <DataGrid.Columns>
+                    
                     <DataGridTextColumn Header="Id#" Binding="{Binding tableId}" Width="50"/>
                     <DataGridTextColumn Header="Num" Binding="{Binding seats}" Width="*"/>
                     <DataGridTextColumn Header="Bill" Width="*"/>
@@ -44,14 +52,11 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
-                                    <Button>
-                                        <fa:IconImage Icon="Pencil"
-                                        Style="{StaticResource ResourceKey=iconButtonIcon}"/>
+
+                                    <Button Command="{Binding DataContext.MiniTableCr, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}">
+                                        <fa:IconImage Icon="Pencil" Style="{StaticResource ResourceKey=menuButtonIcon}"/>
                                     </Button>
-                                    <Button>
-                                            <fa:IconImage Icon="DeleteLeft"
-                                            Style="{StaticResource ResourceKey=iconButtonIcon}"/>
-                                        </Button>
+
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

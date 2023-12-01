@@ -1,5 +1,6 @@
 ﻿using blanc.Models;
 using blanc.Views;
+using FontAwesome.Sharp;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace blanc.ViewModels
 {
@@ -19,9 +21,12 @@ namespace blanc.ViewModels
     {
         const string tables = "D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json";
 
-        private ObservableCollection<TableModel>? _tables;
-        private TableModel? _selectedTable;
 
+        private MiniTableViewModew miniTableViewModew;
+
+        private ObservableCollection<TableModel>? _tables;
+
+        private TableModel _selectedTable;
         public ObservableCollection<TableModel>? Tables 
         {
             get { return _tables; }
@@ -36,7 +41,7 @@ namespace blanc.ViewModels
         public string[]? OrderedItems { get; set; }
         public float Bill {  get; set; }
 
-
+        public ICommand MiniTableCr { get; private set; }
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
@@ -47,6 +52,7 @@ namespace blanc.ViewModels
         public ICommand JoinTableCommand {  get; private set; }*/
         public TablesViewModel() 
         {
+            MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);
             AddTableCommand = new RelayCommand(AddTable);
             AddBillCommand = new RelayCommand(AddBill);
             PayBillCommand = new RelayCommand(PayBill);
@@ -62,6 +68,29 @@ namespace blanc.ViewModels
                 foreach (var item in table)
                 {
                     Tables.Add(item);
+                }
+            }
+
+        }
+
+        private void ExecuteMiniTablesCommand()
+        {
+            if (this.SelectedTable != null)
+            {
+
+
+                // Зареждате всички маси от JSON файла
+                string json = File.ReadAllText("D:\\vikoEdit\\blanc\\blanc\\jsonFiles\\Tables.json");
+                List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
+
+                // Намерете масата, която отговаря на избраната маса по tableId
+                TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
+
+                // Ако съответната маса е намерена, покажете MiniTable прозореца с тези данни
+                if (tableToDisplay != null)
+                {
+                    var miniTableView = new MiniTable(tableToDisplay);
+                    miniTableView.Show();
                 }
             }
 
@@ -111,14 +140,13 @@ namespace blanc.ViewModels
             }
         }
 
-        public TableModel? SelectedTable
+        public TableModel SelectedTable
         {
             get { return _selectedTable; }
             set
             {
                 _selectedTable = value;
                 OnPropertyChanged(nameof(SelectedTable));
-                CommandManager.InvalidateRequerySuggested();
             }
         }
         private void AddBill()

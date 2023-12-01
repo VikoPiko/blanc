@@ -1,4 +1,6 @@
-﻿using System;
+﻿using blanc.Models;
+using blanc.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,15 @@ namespace blanc.Views
         {
             InitializeComponent();
             _mainWindow = mainWindow;
+            
+        }
+        public MiniTable(TableModel selectedTable)
+        {
+            InitializeComponent();
+            // Предполагаме, че имате ViewModel, който управлява данните за MiniTable
+            var viewModel = new TablesViewModel();
+            viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
+            this.DataContext = viewModel; // Задавате DataContext на прозореца
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
