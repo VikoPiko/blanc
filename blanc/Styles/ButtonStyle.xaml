@@ -156,4 +156,69 @@
         <Setter Property="Height" Value="16"/>
     </Style>
 
+
+
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="#1A060531"/>
+        <!-- Semi-transparent primary back color -->
+        <Setter Property="Foreground" Value="#CCFFFFFF"/>
+        <!-- Soft white for text -->
+        <Setter Property="BorderBrush" Value="#805F4B66"/>
+        <!-- Softer border color -->
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="RowBackground" Value="#2824105F"/>
+        <!-- Softer row background -->
+        <Setter Property="AlternatingRowBackground" Value="#28210F55"/>
+        <!-- Softer alternating row background -->
+        <Setter Property="HorizontalGridLinesBrush" Value="#80A7ADC6"/>
+        <!-- Softer grid lines -->
+        <Setter Property="VerticalGridLinesBrush" Value="#80A7ADC6"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="RowHeight" Value="30"/>
+        <Setter Property="SelectionMode" Value="Single"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        
+        <!-- Rounded corners -->
+    </Style>
+
+    <!-- Style for Column Headers -->
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="#FF53195D"/>
+        <!-- Slightly modified primary back color for header -->
+        <Setter Property="Foreground" Value="#CCFFFFFF"/>
+        <!-- Soft white for header text -->
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        
+        <!-- Top rounded corners -->
+        <Setter Property="Padding" Value="5"/>
+        <!-- Padding for a softer look -->
+    </Style>
+
+    <!-- Style for Cells -->
+    <Style TargetType="DataGridCell">
+
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{StaticResource plainTextColor4}"/>
+        <!-- Soft main color for text -->
+    </Style>
+    
+    <Style TargetType="DataGridRow">
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="Margin" Value="0"/>
+        <!-- ... other setters ... -->
+    </Style>
+
+
+
+
+
+
 </ResourceDictionary>

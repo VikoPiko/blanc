@@ -28,6 +28,8 @@ namespace blanc.ViewModels
         private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
 
         private TableModel _selectedTable;
+
+       
         public ObservableCollection<TableModel> Tables 
         {
             get { return _tables; }
@@ -168,6 +170,10 @@ namespace blanc.ViewModels
                 OnPropertyChanged(nameof(SelectedTable));
             }
         }
+
+
+
+
         private List<Menu> _menuItems;
         public List<Menu> MenuItems
         {

@@ -35,6 +35,7 @@ namespace blanc.Views
             var viewModel = new TablesViewModel();
             viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
             viewModel.MenuItems = menuItems;
+           
             this.DataContext = viewModel; // Задавате DataContext на прозореца
          
          
@@ -49,6 +50,27 @@ namespace blanc.Views
                 // Begin dragging the window
                 this.DragMove();
             }
+        }
+
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+
+        // SHOULD CLOSE ONLY TABLE 
+        private void btnMaximize_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+                this.WindowState = WindowState.Maximized;
+            else
+                this.WindowState = WindowState.Normal;
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
         }
 
        

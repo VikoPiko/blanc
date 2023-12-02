@@ -30,6 +30,8 @@
     <SolidColorBrush x:Key="plainTextColor1" Color="#9497CD"/>
     <SolidColorBrush x:Key="plainTextColor2" Color="#7C80C2"/>
     <SolidColorBrush x:Key="plainTextColor3" Color="#7376BD"/>
+    <SolidColorBrush x:Key="plainTextColor4" Color="#E9FAE3"/>
+    <SolidColorBrush x:Key="plainTextColor5" Color="#AEECEF"/>
     <!--Panel Colors-->
     <SolidColorBrush x:Key="panelColor" Color="#D0A98F"/>
     <SolidColorBrush x:Key="panelOverColor" Color="#E49AB0"/>
@@ -42,38 +44,20 @@
     <Color x:Key="BackgroundColor3">#56667A</Color>
 
     <!-- Data grid style-->
-    <Style TargetType="DataGrid">
-        <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="BorderBrush" Value="Gray"/>
-        <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="RowBackground" Value="#F0F0F0"/>
-        <Setter Property="AlternatingRowBackground" Value="White"/>
-        <Setter Property="HorizontalGridLinesBrush" Value="#DDD"/>
-        <Setter Property="VerticalGridLinesBrush" Value="#DDD"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="RowHeight" Value="30"/>
-        <Setter Property="SelectionMode" Value="Single"/>
-        <Setter Property="IsReadOnly" Value="True"/>
-    </Style>
 
-    <!-- Стил за заглавия на колони -->
-    <Style TargetType="DataGridColumnHeader">
-        <Setter Property="Background" Value="#007ACC"/>
-        <Setter Property="Foreground" Value="White"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-    </Style>
 
-    <!-- Стил за клетки -->
-    <Style TargetType="DataGridCell">
-        <Setter Property="Padding" Value="10,0"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="HorizontalContentAlignment" Value="Left"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-    </Style>
+
+    <!--Color Palette-->
+    <SolidColorBrush x:Key="primaryBackColor1S" Color="#060531"/>
+    <SolidColorBrush x:Key="primaryBackColor2S" Color="#FF53195D"/>
+    <SolidColorBrush x:Key="secondaryBackColor1S" Color="#24105F"/>
+    <SolidColorBrush x:Key="secondaryBackColor2S" Color="#5F4B66"/>
+    <SolidColorBrush x:Key="winBorderColor1S" Color="#2C1320"/>
+    <SolidColorBrush x:Key="winBorderColor2S" Color="#A7ADC6"/>
+    <SolidColorBrush x:Key="winBorderColor3S" Color="#210F55"/>
+
+
+    
+
 
 </ResourceDictionary>
