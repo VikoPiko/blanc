@@ -20,8 +20,8 @@ namespace blanc.ViewModels
 {
     public class TablesViewModel : ViewModelBase
     {
-        const string tables = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Tables.json";
-
+        const string tablesJsn = "Tables.json";
+        const string menuJsn = "Menu.json";
 
         private MiniTableViewModel miniTableViewModel;  
 
@@ -57,13 +57,13 @@ namespace blanc.ViewModels
         {
             MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);
             AddTableCommand = new RelayCommand(AddTable);
-           /* AddBillCommand = new RelayCommand(AddBill);
+          /* AddBillCommand = new RelayCommand(AddBill);
             PayBillCommand = new RelayCommand(PayBill);*/
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
 
             Tables = new ObservableCollection<TableModel>();
 
-            string rawJson = File.ReadAllText(tables);
+            string rawJson = File.ReadAllText(tablesJsn);
             List<TableModel>? table = JsonConvert.DeserializeObject<List<TableModel>>(rawJson);
 
             if (table != null)
@@ -83,7 +83,7 @@ namespace blanc.ViewModels
 
 
                 // Зареждате всички маси от JSON файла
-                string json = File.ReadAllText("C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Tables.json");
+                string json = File.ReadAllText(tablesJsn);
                 List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
 
                 // Намерете масата, която отговаря на избраната маса по tableId
@@ -94,7 +94,7 @@ namespace blanc.ViewModels
                 // Ако съответната маса е намерена
                 if (tableToDisplay != null)
                 {
-                    string menuJson = File.ReadAllText("C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Menu.json");
+                    string menuJson = File.ReadAllText(menuJsn);
                     List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
 
                     // Проверете дали вече има отворен прозорец за тази маса
@@ -139,7 +139,7 @@ namespace blanc.ViewModels
             string json = JsonConvert.SerializeObject(table, Formatting.Indented);
 
 
-            File.WriteAllText(tables, json);
+            File.WriteAllText(tablesJsn, json);
 
 
         }
@@ -155,7 +155,7 @@ namespace blanc.ViewModels
                 Tables.Remove(_selectedTable);
 
                 string json = JsonConvert.SerializeObject(Tables, Formatting.Indented);
-                File.WriteAllText(tables, json);
+                File.WriteAllText(tablesJsn, json);
             }
         }
 

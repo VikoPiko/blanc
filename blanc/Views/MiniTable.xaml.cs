@@ -36,11 +36,11 @@ namespace blanc.Views
             viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
             viewModel.MenuItems = menuItems;
             this.DataContext = viewModel; // Задавате DataContext на прозореца
-          
+         
          
            
         }
-
+       
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Check if left mouse button is pressed
@@ -51,5 +51,6 @@ namespace blanc.Views
             }
         }
 
+       
     }
 }

@@ -12,6 +12,7 @@
         Background="Transparent"
         Height="600"
         Width="900">
+    
 
     <Window.DataContext>
         <viewModel:MiniTableViewModel/>
