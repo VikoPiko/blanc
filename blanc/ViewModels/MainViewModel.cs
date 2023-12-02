@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Controls;
 using FontAwesome.Sharp;
 using System.Security.AccessControl;
+using blanc.Views;
 
 namespace blanc.ViewModels
 {
@@ -30,7 +31,7 @@ namespace blanc.ViewModels
         private MenuViewModel _menuViewModel;
         private StaffViewModel _staffViewModel;
         private DashboardViewModel _dashboardViewModel;
-        
+        private SettingsViewModel _settings;
 
 
         public UserAccountModel? CurrentUserAccount
@@ -90,6 +91,7 @@ namespace blanc.ViewModels
         public ICommand ShowBillCommand { get; }
         public ICommand ShowKitchenCommand { get; }
         public ICommand ShowTablesCommand { get; }
+        public ICommand ShowSettingsCommand { get; }
 
         public MainViewModel()
         {
@@ -103,6 +105,7 @@ namespace blanc.ViewModels
             ShowBillCommand = new ViewModelCommands(ExecuteShowBillCommand);
             ShowKitchenCommand = new ViewModelCommands(ExecuteShowKitchenCommand);
             ShowTablesCommand = new ViewModelCommands(ExecuteShowTablesCommand);
+            ShowSettingsCommand = new ViewModelCommands(ExecuteSettingsViewCommand);
 
             ExecuteShowDashboardViewCommand(null);
 
@@ -184,6 +187,17 @@ namespace blanc.ViewModels
             CurrentChildView = _dashboardViewModel;
             Caption = "Dashboard";
             Icon = IconChar.Home;
+        }
+
+        private void ExecuteSettingsViewCommand(object? obj)
+        {
+            if (_settings == null)
+            {
+                _settings = new SettingsViewModel();
+            }
+            CurrentChildView = _settings;
+            Caption = "Settings";
+            Icon = IconChar.Plus;
         }
 
         private void LoadCurrentUserData()

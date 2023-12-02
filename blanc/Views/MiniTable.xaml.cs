@@ -2,6 +2,7 @@
 using blanc.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Menu = blanc.Models.Menu;
 
 namespace blanc.Views
 {
@@ -26,13 +28,17 @@ namespace blanc.Views
             _mainWindow = mainWindow;
             
         }
-        public MiniTable(TableModel selectedTable)
+        public MiniTable(TableModel selectedTable, List<Menu> menuItems)
         {
             InitializeComponent();
             // Предполагаме, че имате ViewModel, който управлява данните за MiniTable
             var viewModel = new TablesViewModel();
             viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
+            viewModel.MenuItems = menuItems;
             this.DataContext = viewModel; // Задавате DataContext на прозореца
+          
+         
+           
         }
 
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)

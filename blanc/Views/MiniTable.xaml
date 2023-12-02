@@ -14,51 +14,50 @@
         Width="900">
 
     <Window.DataContext>
-        <viewModel:MiniTableViewModew/>
+        <viewModel:MiniTableViewModel/>
     </Window.DataContext>
 
     <Border Background="#56667A"
             CornerRadius="10">
-        
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+
+        <Grid>
+           
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Orientation="Vertical">
-                <TextBlock  Text="Bill Control"
+            <StackPanel Orientation="Vertical" Grid.ColumnSpan="3">
+                <TextBlock  Text="{Binding SelectedTable.tableId}"
                             Foreground="White"
                             FontSize="22"
                             Width="125"
                             FontFamily="Montserrat"
                             FontWeight="Medium"
-                            HorizontalAlignment="Left"
-                            VerticalAlignment="Center"
-                            Margin="50,10,0,10"/>
-                <!-- da se dobavi commanda-->
-
-                <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
-                    <Button VerticalAlignment="Top"
-                            Width="50"
-                            Height="35"
-                            Margin="75,0,0,0"
-                            HorizontalAlignment="Left"
-                            Content="Pay"
-                            FontWeight="Medium"
-                            FontFamily="Montserrat"
-                            Tag="{StaticResource color5}"
-                            Command="{Binding }">
-                    </Button>
-                </StackPanel>
-                
-                
-                
+                            />
             </StackPanel>
+            <TextBlock  Text="{Binding orderedItems}"
+             Foreground="White"
+             FontSize="22"
+             Width="125"
+             FontFamily="Montserrat"
+             FontWeight="Medium"
+             HorizontalAlignment="Left"
+             VerticalAlignment="Top"
+             Margin="10,5,0,0" Grid.Row="1"/>
+
+            <ListView x:Name="MenuItemsListView"  ItemsSource="{Binding MenuItems}" Margin="552,0,0,146" Grid.Row="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="100" />
+                        <GridViewColumn Header="Description" DisplayMemberBinding="{Binding Description}" Width="150"/>
+                        <GridViewColumn Header="Price" DisplayMemberBinding="{Binding Price}" Width="50"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
         </Grid>
-        
+
     </Border>
 </Window>
