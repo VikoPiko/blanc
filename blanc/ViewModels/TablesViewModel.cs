@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
+using Menu = blanc.Models.Menu;
 
 namespace blanc.ViewModels
 {
@@ -22,12 +23,12 @@ namespace blanc.ViewModels
         const string tables = "C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Tables.json";
 
 
-        private MiniTableViewModel miniTableViewModel;
+        private MiniTableViewModel miniTableViewModel;  
 
-        private ObservableCollection<TableModel>? _tables;
+        private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
 
         private TableModel _selectedTable;
-        public ObservableCollection<TableModel>? Tables 
+        public ObservableCollection<TableModel> Tables 
         {
             get { return _tables; }
             set
@@ -56,8 +57,8 @@ namespace blanc.ViewModels
         {
             MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);
             AddTableCommand = new RelayCommand(AddTable);
-            AddBillCommand = new RelayCommand(AddBill);
-            PayBillCommand = new RelayCommand(PayBill);
+           /* AddBillCommand = new RelayCommand(AddBill);
+            PayBillCommand = new RelayCommand(PayBill);*/
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
 
             Tables = new ObservableCollection<TableModel>();
@@ -93,11 +94,14 @@ namespace blanc.ViewModels
                 // Ако съответната маса е намерена
                 if (tableToDisplay != null)
                 {
+                    string menuJson = File.ReadAllText("C:\\BlankSystem\\blanc\\blanc\\jsonFiles\\Menu.json");
+                    List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
+
                     // Проверете дали вече има отворен прозорец за тази маса
                     if (!openTables.ContainsKey(tableToDisplay.tableId))
                     {
                         // Създайте прозореца и го добавете към речника
-                        var miniTableView = new MiniTable(tableToDisplay);
+                        var miniTableView = new MiniTable(tableToDisplay,menuItems);
                         miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
                         openTables[tableToDisplay.tableId] = miniTableView;
                         miniTableView.Show();
@@ -164,14 +168,27 @@ namespace blanc.ViewModels
                 OnPropertyChanged(nameof(SelectedTable));
             }
         }
-        private void AddBill()
+        private List<Menu> _menuItems;
+        public List<Menu> MenuItems
+        {
+            get { return _menuItems; }
+            set
+            {
+                _menuItems = value;
+                OnPropertyChanged(nameof(MenuItems));
+            }
+        }
+
+    }
+       /* private void AddBill()
         {
             throw new NotImplementedException();
         }
         private void PayBill()
         {
             throw new NotImplementedException();
-        }
+        }*/
 
-    }
+       
+
 }

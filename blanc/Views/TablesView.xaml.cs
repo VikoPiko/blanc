@@ -14,7 +14,7 @@ namespace blanc.Views
         {
             
                 MiniTable miniWindow = new MiniTable(this);
-                miniWindow.ShowDialog(); // or miniWindow.ShowDialog() if you want it to be modal -> ?????????
+                miniWindow.ShowDialog(); 
             
         }
 
