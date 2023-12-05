@@ -4,9 +4,156 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:blanc.Views"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+             xmlns:viewModel="clr-namespace:blanc.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Image Source="/Images/lmao.png"/>
+             d:DesignHeight="450" d:DesignWidth="800"
+             Background="Transparent">
+
+    <UserControl.DataContext>
+        <viewModel:StaffViewModel/>
+    </UserControl.DataContext>
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black"
+                Background="#394053"
+                BorderThickness="0,0,0,2"
+                Grid.Row="0">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="/Images/lmao.png"
+                       Height="100"
+                       Width="100"
+                       Margin="10,0,0,0"/>
+
+                <TextBlock Text="First Name"
+                           Foreground="White"
+                           Width="80"
+                           Height="20"
+                           Margin="15,-40,0,0"/>
+                <TextBlock Text="{Binding fName}"
+                           Width="80"
+                           Foreground="White"
+                           Height="20"
+                           Margin="-80,10,0,0"/>
+                <TextBlock Text="Last Name"
+                           Foreground="White"
+                           Width="80"
+                           Height="20"
+                           Margin="-80,40,0,0"/>
+                <TextBlock Text="{Binding lName}"
+                           Width="80"
+                           Foreground="White"
+                           Height="20"
+                           Margin="-80,80,0,0"/>
+
+                <fa:IconImage Icon="Clock"
+                              Foreground="White"
+                              Width="50"
+                              Height="50"
+                              Margin="50,0,0,0"/>
+                <TextBlock Text="Time Worked"
+                           Foreground="White"
+                           Width="70"
+                           Height="20"
+                           Margin="10,-30,0,0"/>
+                <TextBlock Text="{Binding hWorked}"
+                           Foreground="White"
+                           Width="60"
+                           Height="20"
+                           Margin="-70,20,0,0"/>
+            </StackPanel>
+    </Border>
+
+        <Border Grid.Row="1"
+                Background="Black">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Employees On Shift"
+                           HorizontalAlignment="Center"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           FontFamily="Montserrat"
+                           FontSize="15"
+                           Height="20"
+                           VerticalAlignment="Center"
+                           Margin="350,0,0,0"/>
+            </StackPanel>
+        </Border >
+        <Border Grid.Row="2"
+                Background="#394053"
+                CornerRadius="2">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Images/chef.png"
+                       Width="50"
+                       Height="50"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="10,10,0,0"/>
+                <TextBlock Text="Chef"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           Width="50"
+                           Height="20"
+                           VerticalAlignment="Top"
+                           HorizontalAlignment="Left"
+                           Margin="10,20,0,0"/>
+                <Image Source="/Images/bad-cook.jpg"
+                       Width="50"
+                       Height="50"
+                       VerticalAlignment="Top"
+                       Margin="20,10,0,0"/>
+                    <TextBlock Text="Cook"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           Width="50"
+                           Height="20"
+                           VerticalAlignment="Top"
+                           Margin="10,20,0,0"/>
+                <Image Source="/Images/good-cook.jpeg"
+                       Width="50"
+                       Height="37"
+                       VerticalAlignment="Top"
+                       Margin="20,10,0,0"/>
+                <TextBlock Text="Cook"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           Width="50"
+                           Height="20"
+                           VerticalAlignment="Top"
+                           Margin="10,20,0,0"/>
+                <Image Source="/Images/dishwasher.jpg"
+                       Width="50"
+                       Height="50"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Left"
+                       Margin="-370,100,0,0"/>
+                <TextBlock Text="Dishwasher"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           Width="65"
+                           Height="20"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           Margin="-310,115,0,0"/>
+                <Image Source="/Images/manager.jpg"
+                       Width="50"
+                       Height="50"
+                       VerticalAlignment="Top"
+                       Margin="310,10,0,0"/>
+                <TextBlock Text="MANAGER"
+                           Foreground="White"
+                           FontWeight="Medium"
+                           Width="60"
+                           Height="20"
+                           VerticalAlignment="Top"
+                           Margin="10,20,0,0"/>
+            </StackPanel>
+        </Border>
     </Grid>
+    
 </UserControl>

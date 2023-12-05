@@ -8,18 +8,25 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\bad-cook.jpg" />
+    <None Remove="Images\chef.png" />
     <None Remove="Images\close.png" />
+    <None Remove="Images\dishwasher.jpg" />
     <None Remove="Images\fud.png" />
+    <None Remove="Images\good-cook.jpeg" />
     <None Remove="Images\lmao.png" />
     <None Remove="Images\logo.bmp" />
     <None Remove="Images\logo.jpg" />
     <None Remove="Images\logo.png" />
+    <None Remove="Images\manager.jpg" />
     <None Remove="Images\minimize.png" />
     <None Remove="Images\niga.png" />
     <None Remove="Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\bad-cook.jpg" />
+    <Resource Include="Images\chef.png" />
     <Resource Include="Images\close.png" />
   </ItemGroup>
 
@@ -30,11 +37,14 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Images\dishwasher.jpg" />
     <Resource Include="Images\fud.png" />
+    <Resource Include="Images\good-cook.jpeg" />
     <Resource Include="Images\lmao.png" />
     <Resource Include="Images\logo.bmp" />
     <Resource Include="Images\logo.jpg" />
     <Resource Include="Images\logo.png" />
+    <Resource Include="Images\manager.jpg" />
     <Resource Include="Images\minimize.png" />
     <Resource Include="Images\niga.png" />
     <Resource Include="Images\user.png" />

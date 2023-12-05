@@ -10,7 +10,6 @@
         MouseDown="Window_MouseDown"
         Title="Table Details"
         Background="Transparent"
-        
         Height="600"
         Width="1000"
         WindowStyle="None"
