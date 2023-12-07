@@ -216,9 +216,23 @@
         <!-- ... other setters ... -->
     </Style>
 
+    <Style x:Key="kitchenButtons" TargetType="Button">
+        <Setter Property="Background" Value="#D4D6B9"/>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#EDEEC0"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
-
-
-
-
+    <ControlTemplate x:Key="kitBtn" TargetType="Button">
+        <Border Width="100"
+                Height="30"
+                CornerRadius="10"
+                Background="{TemplateBinding Background}">
+            <ContentPresenter VerticalAlignment="Center"
+                              HorizontalAlignment="center"/>
+        </Border>
+    </ControlTemplate>
+    
 </ResourceDictionary>

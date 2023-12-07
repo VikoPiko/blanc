@@ -24,7 +24,7 @@
         <viewModel:MiniTableViewModel/>
     </Window.DataContext>
 
-    <Border CornerRadius="10" BorderThickness="10" >
+    <Border CornerRadius="10" BorderThickness="3" >
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -127,7 +127,7 @@ FontWeight="Medium"/>
                 </Border>
 
 
-                <Border Grid.Row="2" CornerRadius="10"  BorderThickness="5" >
+                <Border Grid.Row="2" CornerRadius="10"  BorderThickness="2" >
 
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">

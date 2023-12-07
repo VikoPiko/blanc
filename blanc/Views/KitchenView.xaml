@@ -2,18 +2,454 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:local="clr-namespace:blanc.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border Background="#3fa3ac">
+    <Border Background="White">
         <Grid>
-            <TextBlock Text="EMO FIX THIS SHIT MAAN"
-                       FontSize="69"
-                       VerticalAlignment="Center"/>
-            <TextBlock Text="KUHNQ? NE ZNAM BRAT"
-                       FontSize="20"
-                       FontWeight="ExtraBold"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="Gray"
+                    BorderThickness="0,0,0,2"
+                    Grid.Row="0"
+                    Background="#C4CAD0">
+                <StackPanel Orientation="Horizontal">
+                    <Button Width="50"
+                            Background="Transparent"
+                            Height="30"
+                            Foreground="Black"
+                            BorderThickness="0,0,0,0"
+                            Content="Orders"
+                            Name="Orders"
+                            Click="Orders_Click"
+                            HorizontalAlignment="Left"
+                            Margin="10,0,0,0"/>
+                    <Button Width="50"
+                            Background="Transparent"
+                            BorderThickness="0,0,0,0"
+                            Height="30"
+                            Content="History"
+                            Name="History"
+                            Foreground="Black"
+                            Click="History_Click"
+                            HorizontalAlignment="Left"
+                            Margin="5,0,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Grid.Row="1"
+                    Grid.Column="0"
+                    x:Name="CurrentOrder">
+                <StackPanel Margin="15"
+                            Orientation="Vertical"
+                            Background="#C4CAD0">
+                    <StackPanel Orientation="Vertical"
+                                Width="150"
+                                Height="250"
+                                Margin="0,10,0,0"
+                                Background="White">
+                        <TextBlock Text="Pizza"
+                                   HorizontalAlignment="Left"
+                                   Margin="3,0,0,0"/>
+                        <TextBlock Text="Soup"
+                                   Margin="3,0,0,0"/>
+                    </StackPanel>
+                    <Button Width="100"
+                            Height="30"
+                            Foreground="White"
+                            Content="Start Order"
+                            Name="Ready"
+                            Margin="0,20,0,0"
+                            Style="{StaticResource kitchenButtons}"
+                            Template="{StaticResource kitBtn}"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Click="Ready_Click"
+                            Background="#08C628"/>
+                    <Button Width="100"
+                            Height="30"
+                            Style="{StaticResource kitchenButtons}"
+                            Template="{StaticResource kitBtn}"
+                            Foreground="White"
+                            Margin="0,15,0,0"
+                            Name="CancelOrder"
+                            BorderThickness="0"
+                            BorderBrush="Transparent"
+                            Content="Cancel Order"
+                            Click="CancelOrder_Click"
+                            Background="#FD5200"/>
+                </StackPanel>
+            </Border>
+
+            <Border Grid.Row="1"
+                    Grid.Column="1">
+                <ScrollViewer VerticalScrollBarVisibility="Visible">
+                    <Grid Background="#2fa4c1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                        
+                        <StackPanel Background="Blue"
+                                    Grid.Column="0"
+                                    Orientation="Vertical">
+                            <Expander Header="09:11"
+                                      Foreground="white">
+                                <Border CornerRadius="5">
+                                    <StackPanel Margin="10"
+                                            Background="#DC6C3B">
+                                        <TextBlock Text="09:11"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Medium"
+                                                FontFamily="Montserrat"/>
+                                        <StackPanel Background="White"
+                                                Margin="10,5,10,10">
+                                            <TextBlock Text="Pizza"
+                                                       Foreground="Black"/>
+                                            <TextBlock Text="hlqb"
+                                                       Foreground="Black"/>
+                                            <TextBlock Text="sol"
+                                                       Foreground="Black"/>
+                                        </StackPanel>
+                                        <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+                                    </StackPanel>
+                                </Border>
+                            </Expander>
+
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="12:34"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Margarin"/>
+                                    <TextBlock Text="Döner"/>
+                                    <TextBlock Text="Salataa"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="23:23"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Milinka"/>
+                                    <TextBlock Text="Banica"/>
+                                    <TextBlock Text="SHKEMBE 4ORBA"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="11:11"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                                
+                            </StackPanel>
+                            <StackPanel Margin="10"
+            Background="#DC6C3B">
+                                <TextBlock Text="11:11"
+               HorizontalAlignment="Center"
+               FontWeight="Medium"
+               FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1"
+                                    Background="LightSeaGreen"
+                                    Orientation="Vertical">
+                            <Border CornerRadius="5">
+                                <StackPanel Margin="10"
+                                            Background="#DC6C3B">
+                                    <TextBlock Text="09:11"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Medium"
+                                                FontFamily="Montserrat"/>
+                                    <StackPanel Background="White"
+                                                Margin="10,5,10,10">
+                                        <TextBlock Text="Pizza"/>
+                                        <TextBlock Text="hlqb"/>
+                                        <TextBlock Text="sol"/>
+                                    </StackPanel>
+                                    <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="12:34"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Margarin"/>
+                                    <TextBlock Text="Döner"/>
+                                    <TextBlock Text="Salataa"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="23:23"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Milinka"/>
+                                    <TextBlock Text="Banica"/>
+                                    <TextBlock Text="SHKEMBE 4ORBA"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="11:11"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+
+                            </StackPanel>
+                            <StackPanel Margin="10"
+            Background="#DC6C3B">
+                                <TextBlock Text="11:11"
+               HorizontalAlignment="Center"
+               FontWeight="Medium"
+               FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2"
+                                    Background="Beige"
+                                    Orientation="Vertical">
+                            <Border CornerRadius="5">
+                                <StackPanel Margin="10"
+                                            Background="#DC6C3B">
+                                    <TextBlock Text="09:11"
+                                               HorizontalAlignment="Center"
+                                               FontWeight="Medium"
+                                                FontFamily="Montserrat"/>
+                                    <StackPanel Background="White"
+                                                Margin="10,5,10,10">
+                                        <TextBlock Text="Pizza"/>
+                                        <TextBlock Text="hlqb"/>
+                                        <TextBlock Text="sol"/>
+                                    </StackPanel>
+                                    <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+                                </StackPanel>
+                            </Border>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="12:34"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Margarin"/>
+                                    <TextBlock Text="Döner"/>
+                                    <TextBlock Text="Salataa"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#DC6C3B">
+                                <TextBlock Text="23:23"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Milinka"/>
+                                    <TextBlock Text="Banica"/>
+                                    <TextBlock Text="SHKEMBE 4ORBA"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+                            </StackPanel>
+                            <StackPanel Margin="10"
+                                        Background="#FD1131">
+                                <TextBlock Text="11:11"
+                                           HorizontalAlignment="Center"
+                                           FontWeight="Medium"
+                                           FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                                            Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+                                        Style="{StaticResource kitchenButtons}"
+                                        Foreground="Black"
+                                        Template="{StaticResource kitBtn}"
+                                        BorderThickness="0"
+                                        BorderBrush="Transparent"
+                                        Background="LightGreen"
+                                        Margin="0,0,0,5"/>
+
+                            </StackPanel>
+                            <StackPanel Margin="10"
+            Background="#DC6C3B">
+                                <TextBlock Text="11:11"
+               HorizontalAlignment="Center"
+               FontWeight="Medium"
+               FontFamily="Montserrat"/>
+                                <StackPanel Background="White"
+                Margin="10,5,10,10">
+                                    <TextBlock Text="Burger"/>
+                                    <TextBlock Text="Fries"/>
+                                    <TextBlock Text="Tacos"/>
+                                </StackPanel>
+                                <Button Content="Ready"
+            Style="{StaticResource kitchenButtons}"
+            Foreground="Black"
+            Template="{StaticResource kitBtn}"
+            BorderThickness="0"
+            BorderBrush="Transparent"
+            Background="LightGreen"
+            Margin="0,0,0,5"/>
+
+                            </StackPanel>
+                            
+                        </StackPanel>
+                        </Grid>
+                </ScrollViewer>
+            </Border>
+            
         </Grid>
     </Border>
+   
 </UserControl>

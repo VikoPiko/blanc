@@ -24,5 +24,25 @@ namespace blanc.Views
         {
             InitializeComponent();
         }
+
+        private void Orders_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void History_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void CancelOrder_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Ready_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

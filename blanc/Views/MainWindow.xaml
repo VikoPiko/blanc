@@ -113,7 +113,8 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
-                                 Command="{Binding ShowCategoryCommand}" Checked="RadioButton_Checked">
+                                 Command="{Binding ShowCategoryCommand}"
+                                 Checked="RadioButton_Checked">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
@@ -268,12 +269,6 @@
                                     FlowDirection="RightToLeft"
                                     VerticalAlignment="Center"
                                     Margin="0,0,10,0">
-
-                            <Button Style="{StaticResource iconButton}"
-                                    Tag="{StaticResource color2}">
-                                <fa:IconImage Icon="AngleDown"
-                                              Style="{StaticResource iconButtonIcon}"/>
-                            </Button>
 
                             <TextBlock Text="{Binding CurrentUserAccount.DisplayName}"
                                        Foreground="{StaticResource color5}"
