@@ -13,30 +13,62 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using Menu = blanc.Models.Menu;
+using System.Windows.Documents;
 
 namespace blanc.ViewModels
 {
     public class MiniTableViewModel: ViewModelBase
     {
         const string menuJsn = "Menu.json";
+        const string billJsn = "Bill.json";
+        
+
+        private TableModel _selectedTable;
+        public TableModel SelectedTable
+        {
+            get { return _selectedTable; }
+            set
+            {
+                _selectedTable = value;
+                OnPropertyChanged(nameof(SelectedTable));
+                // You might also want to load or refresh the bill items for the selected table here.
+            }
+        }
+
         private ObservableCollection<Menu>? _menuItems;
+        private ObservableCollection<Bill>? _billItems;
+        public ObservableCollection<Bill> BillItems
+        {
+            get =>_billItems; 
+            set { _billItems = value; OnPropertyChanged(nameof(BillItems)); }
+        }
         private Menu? _selectedItems;
         public ObservableCollection<Menu> MenuItems
         {
-            get { return _menuItems; }
+            get => _menuItems; 
             set { _menuItems = value; OnPropertyChanged(nameof(MenuItems)); }
+        }
+        private Menu _selectedMenuItem;
+        public Menu SelectedItem
+        {
+            get => _selectedMenuItem;
+            set
+            {
+                _selectedMenuItem = value;
+                OnPropertyChanged(nameof(SelectedItem));
+            }
         }
 
 
 
-        
+
         public ICommand AddToBillCommand { get; private set; }
 
         public MiniTableViewModel()
         {
-           
-            MenuItems = new ObservableCollection<Menu>();
-           AddToBillCommand = new RelayCommandWithObject(AddToBillExecute, AddToBillCanExecute);
+            BillItems = new ObservableCollection<Bill>();
+             MenuItems = new ObservableCollection<Menu>();
+           AddToBillCommand = new RelayCommand(AddToBill);
             // Presumably, you would load your menu items here or in a method called by the constructor
             LoadMenuItems();
         }
@@ -53,19 +85,22 @@ namespace blanc.ViewModels
             OnPropertyChanged(nameof(MenuItems));
         }
 
-        private bool AddToBillCanExecute(object arg)
+        private void AddToBill()
         {
-            // Logic to determine if AddToBillCommand can execute
-            return true; // For now, we'll just return true
-        }
-
-        private void AddToBillExecute(object parameter)
-        {
-            if (parameter is MenuItem menuItem)
+            if (SelectedItem != null)
             {
-                // Logic to add menuItem to the SelectedTable's bill
+                var billItem = new Bill
+                {
+                    tableId = this.SelectedTable.tableId,
+                    Name = SelectedItem.Name,
+                    Price = SelectedItem.Price,
+                    Quantity = 1
+                };
+                BillItems.Add(billItem);
             }
         }
+
+       
        
     }
 }

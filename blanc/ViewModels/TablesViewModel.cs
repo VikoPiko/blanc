@@ -29,7 +29,6 @@ namespace blanc.ViewModels
 
         private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
 
-        private TableModel _selectedTable;
 
        
         public ObservableCollection<TableModel> Tables 
@@ -39,6 +38,19 @@ namespace blanc.ViewModels
             {
                 _tables = value;
                 OnPropertyChanged(nameof(Tables));
+            }
+        }
+
+
+       private TableModel _selectedTable;
+       public TableModel SelectedTable
+        {
+            get { return _selectedTable; }
+            set
+            {
+                _selectedTable = value;
+                OnPropertyChanged(nameof(SelectedTable));
+                
             }
         }
 
@@ -82,68 +94,23 @@ namespace blanc.ViewModels
         {
             if (this.SelectedTable != null)
             {
-
-
                 // Зареждате всички маси от JSON файла
                 string json = File.ReadAllText(tablesJsn);
                 List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
-
-                // Намерете масата, която отговаря на избраната маса по tableId
-                TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
-
-
-
+             
                 // Ако съответната маса е намерена
-                if (tableToDisplay != null)
+                if (SelectedTable != null && !openTables.ContainsKey(SelectedTable.tableId))
                 {
-                    // Създайте прозореца и го добавете към речника
-                    var miniTableView = new MiniTable();
-                    miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
-                    openTables[tableToDisplay.tableId] = miniTableView;
+                    // Create the window and add it to the dictionary
+                    var miniTableView = new MiniTable(SelectedTable);
+                    miniTableView.Closed += (sender, args) => openTables.Remove(SelectedTable.tableId);
+                    openTables[SelectedTable.tableId] = miniTableView;
                     miniTableView.Show();
                 }
             }
          }
 
-        /*   private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
-  private void ExecuteMiniTablesCommand()
-  {
-      if (this.SelectedTable != null)
-      {
-
-
-          // Зареждате всички маси от JSON файла
-          string json = File.ReadAllText(tablesJsn);
-          List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
-
-          // Намерете масата, която отговаря на избраната маса по tableId
-          TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
-
-
-
-          // Ако съответната маса е намерена
-          if (tableToDisplay != null)
-          {
-              string menuJson = File.ReadAllText(menuJsn);
-              List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
-
-              // Проверете дали вече има отворен прозорец за тази маса
-              if (!openTables.ContainsKey(tableToDisplay.tableId))
-              {
-                  // Създайте прозореца и го добавете към речника
-                  var miniTableView = new MiniTable(tableToDisplay,menuItems);
-                  miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
-                  openTables[tableToDisplay.tableId] = miniTableView;
-                  miniTableView.Show();
-              }
-              else
-              {
-                  // Фокусиране на вече отворения прозорец
-                  openTables[tableToDisplay.tableId].Focus();
-              }
-          }
-      }
-  }*/
+        
 
         public void AddTable()
         {
@@ -189,15 +156,6 @@ namespace blanc.ViewModels
             }
         }
 
-       public TableModel SelectedTable
-        {
-            get { return _selectedTable; }
-            set
-            {
-                _selectedTable = value;
-                OnPropertyChanged(nameof(SelectedTable));
-            }
-        }
 
 
 
@@ -214,15 +172,6 @@ namespace blanc.ViewModels
         }
 
     }
-       /* private void AddBill()
-        {
-            throw new NotImplementedException();
-        }
-        private void PayBill()
-        {
-            throw new NotImplementedException();
-        }*/
-
-       
+     
 
 }

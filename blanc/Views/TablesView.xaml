@@ -44,7 +44,7 @@
             <TextBox Width="200" Height="100" HorizontalAlignment="Right" VerticalAlignment="Top" Text="{Binding seats, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
 
             <DataGrid ItemsSource="{Binding Tables}" 
-              SelectedItem="{Binding SelectedTable}" 
+              SelectedItem="{Binding SelectedTable, Mode=TwoWay}" 
               AutoGenerateColumns="False" 
             Grid.Row="1"
               IsReadOnly="True"

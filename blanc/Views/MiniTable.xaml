@@ -15,7 +15,9 @@
         WindowStyle="None"
         AllowsTransparency="True"
         WindowStartupLocation="CenterOwner"
-        Opacity="1">
+        Opacity="1"
+        Loaded="Window_Loaded"
+        Closing="Window_Closing">
     
 
     <Window.DataContext>
@@ -144,6 +146,7 @@ FontWeight="Medium"/>
 
 
                         <DataGrid ItemsSource="{Binding MenuItems}"
+                                  SelectedItem="{Binding SelectedItem}"
                          x:Name="MenuItemsListView"
                          Grid.Column="2"  
                          VerticalAlignment="Top"
@@ -152,7 +155,7 @@ FontWeight="Medium"/>
                          IsReadOnly="False"
                                    ColumnWidth="*"
 
-                         SelectedItem="{Binding SelectedTable}"
+                         
                                   CanUserResizeRows="False"
      
      
@@ -170,7 +173,8 @@ FontWeight="Medium"/>
                                         <DataTemplate>
                                             <StackPanel Orientation="Horizontal">
 
-                                                <Button >
+                                                <Button Command="{Binding DataContext.AddToBillCommand, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}"
+        CommandParameter="{Binding}" >
                                                     <fa:IconImage Icon="Add" Style="{StaticResource ResourceKey=menuButtonIcon}"/>
                                                 </Button>
 
@@ -184,7 +188,7 @@ FontWeight="Medium"/>
 
 
                         <!--Selected items  itemsorce should be added-->
-                        <DataGrid ItemsSource="{Binding SelectedTable.Bill}"
+                        <DataGrid ItemsSource="{Binding BillItems}"
                                   Grid.Column="0"
                                   VerticalAlignment="Top"
                                   HorizontalAlignment="Stretch"
