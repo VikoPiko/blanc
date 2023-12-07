@@ -19,11 +19,17 @@ namespace blanc.ViewModels
     public class MiniTableViewModel: ViewModelBase
     {
         const string menuJsn = "Menu.json";
+        private ObservableCollection<Menu>? _menuItems;
+        private Menu? _selectedItems;
+        public ObservableCollection<Menu> MenuItems
+        {
+            get { return _menuItems; }
+            set { _menuItems = value; OnPropertyChanged(nameof(MenuItems)); }
+        }
 
-       
 
-       
-        public ObservableCollection<Menu> MenuItems { get; private set; }
+
+        
         public ICommand AddToBillCommand { get; private set; }
 
         public MiniTableViewModel()
