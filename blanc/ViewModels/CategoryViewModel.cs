@@ -11,6 +11,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Text.Json;
 using System.IO;
+using blanc.ViewModels.Commands;
 
 namespace blanc.ViewModels
 {

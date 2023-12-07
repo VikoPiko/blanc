@@ -1,4 +1,5 @@
 ﻿using blanc.Models;
+using blanc.ViewModels.Commands;
 using blanc.Views;
 using FontAwesome.Sharp;
 using Newtonsoft.Json;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -23,7 +25,7 @@ namespace blanc.ViewModels
         const string tablesJsn = "Tables.json";
         const string menuJsn = "Menu.json";
 
-        private MiniTableViewModel miniTableViewModel;  
+        
 
         private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
 
@@ -48,19 +50,16 @@ namespace blanc.ViewModels
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
-
+        public ICommand OpenMiniTablesCommand { get; private set;  }
         
-      //  public ICommand AddMenuItemCommand {  get; private set; }
-      //  public ICommand RemoveMenuItemCommand {  get; private set; }
+      
         public ICommand PayBillCommand {  get; private set; }
-       /* public ICommand SplitTableCommand {  get; private set; }
-        public ICommand JoinTableCommand {  get; private set; }*/
+       
         public TablesViewModel() 
         {
-            MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);
+           /* MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);*/
             AddTableCommand = new RelayCommand(AddTable);
-          /* AddBillCommand = new RelayCommand(AddBill);
-            PayBillCommand = new RelayCommand(PayBill);*/
+            OpenMiniTablesCommand = new RelayCommand(OpenMiniTables);
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
 
             Tables = new ObservableCollection<TableModel>();
@@ -77,8 +76,9 @@ namespace blanc.ViewModels
             }
 
         }
+
         private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
-        private void ExecuteMiniTablesCommand()
+        private void OpenMiniTables()
         {
             if (this.SelectedTable != null)
             {
@@ -91,33 +91,61 @@ namespace blanc.ViewModels
                 // Намерете масата, която отговаря на избраната маса по tableId
                 TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
 
-               
+
 
                 // Ако съответната маса е намерена
                 if (tableToDisplay != null)
                 {
-                    string menuJson = File.ReadAllText(menuJsn);
-                    List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
-
-                    // Проверете дали вече има отворен прозорец за тази маса
-                    if (!openTables.ContainsKey(tableToDisplay.tableId))
-                    {
-                        // Създайте прозореца и го добавете към речника
-                        var miniTableView = new MiniTable(tableToDisplay,menuItems);
-                        miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
-                        openTables[tableToDisplay.tableId] = miniTableView;
-                        miniTableView.Show();
-                    }
-                    else
-                    {
-                        // Фокусиране на вече отворения прозорец
-                        openTables[tableToDisplay.tableId].Focus();
-                    }
+                    // Създайте прозореца и го добавете към речника
+                    var miniTableView = new MiniTable();
+                    miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
+                    openTables[tableToDisplay.tableId] = miniTableView;
+                    miniTableView.Show();
                 }
             }
-        }
+         }
 
-        private void AddTable()
+        /*   private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
+  private void ExecuteMiniTablesCommand()
+  {
+      if (this.SelectedTable != null)
+      {
+
+
+          // Зареждате всички маси от JSON файла
+          string json = File.ReadAllText(tablesJsn);
+          List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
+
+          // Намерете масата, която отговаря на избраната маса по tableId
+          TableModel tableToDisplay = tables.FirstOrDefault(t => t.tableId == this.SelectedTable.tableId);
+
+
+
+          // Ако съответната маса е намерена
+          if (tableToDisplay != null)
+          {
+              string menuJson = File.ReadAllText(menuJsn);
+              List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
+
+              // Проверете дали вече има отворен прозорец за тази маса
+              if (!openTables.ContainsKey(tableToDisplay.tableId))
+              {
+                  // Създайте прозореца и го добавете към речника
+                  var miniTableView = new MiniTable(tableToDisplay,menuItems);
+                  miniTableView.Closed += (sender, args) => openTables.Remove(tableToDisplay.tableId);
+                  openTables[tableToDisplay.tableId] = miniTableView;
+                  miniTableView.Show();
+              }
+              else
+              {
+                  // Фокусиране на вече отворения прозорец
+                  openTables[tableToDisplay.tableId].Focus();
+              }
+          }
+      }
+  }*/
+
+        public void AddTable()
         {
 
             var newTable = new TableModel
@@ -161,7 +189,7 @@ namespace blanc.ViewModels
             }
         }
 
-        public TableModel SelectedTable
+       public TableModel SelectedTable
         {
             get { return _selectedTable; }
             set

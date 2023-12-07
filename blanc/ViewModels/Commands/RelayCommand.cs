@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace blanc.ViewModels
+namespace blanc.ViewModels.Commands
 {
     public class RelayCommand : ICommand
     {
+       
         private readonly Action _execute;
         private readonly Func<bool> _canExecute;
 
@@ -23,7 +24,7 @@ namespace blanc.ViewModels
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute;
         }
-       
+
 
         public bool CanExecute(object parameter)
         {

@@ -22,26 +22,20 @@ namespace blanc.Views
     {
         private TablesView _mainWindow;
 
-        public MiniTable(TablesView mainWindow)
+        public MiniTable()
         {
-            InitializeComponent();
-            _mainWindow = mainWindow;
-            
+            try
+            {
+                InitializeComponent();
+                MiniTableViewModel viewModel = new MiniTableViewModel();
+                this.DataContext = viewModel;
+            }
+            catch (Exception ex)
+            {
+                // Handle the exception
+                MessageBox.Show("An error occurred while opening the table.");
+            }
         }
-        public MiniTable(TableModel selectedTable, List<Menu> menuItems)
-        {
-            InitializeComponent();
-            // Предполагаме, че имате ViewModel, който управлява данните за MiniTable
-            var viewModel = new TablesViewModel();
-            viewModel.SelectedTable = selectedTable; // Сетвате модела на ViewModel
-            viewModel.MenuItems = menuItems;
-           
-            this.DataContext = viewModel; // Задавате DataContext на прозореца
-         
-         
-           
-        }
-       
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Check if left mouse button is pressed

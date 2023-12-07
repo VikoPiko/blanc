@@ -143,7 +143,7 @@ FontWeight="Medium"/>
                         </Grid.ColumnDefinitions>
 
 
-                        <DataGrid ItemsSource="{Binding MenuItems}"
+                        <DataGrid ItemsSource="{Binding Menu}"
                          x:Name="MenuItemsListView"
                          Grid.Column="2"  
                          VerticalAlignment="Top"
@@ -184,7 +184,7 @@ FontWeight="Medium"/>
 
 
                         <!--Selected items  itemsorce should be added-->
-                        <DataGrid 
+                        <DataGrid ItemsSource="{Binding SelectedTable.Bill}"
                                   Grid.Column="0"
                                   VerticalAlignment="Top"
                                   HorizontalAlignment="Stretch"
@@ -194,8 +194,9 @@ FontWeight="Medium"/>
                             CanUserResizeRows="False"
                                   >
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Name" Width="*"/>
-                                <DataGridTextColumn Header="Quantity" Width="100"/>
+                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                                <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
+                                <DataGridTextColumn Header="Total" Binding="{Binding TotalPrice}" />
                             </DataGrid.Columns>
                             
                         </DataGrid>
@@ -215,7 +216,9 @@ FontWeight="Medium"/>
 
             <Border Grid.Row="3" CornerRadius="10"  BorderThickness="5"  Margin="10,10,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Style="{StaticResource addButtton}" 
+                    <RadioButton 
+        Command="{Binding ClearBillCommand}"
+                        Style="{StaticResource addButtton}" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Tag="{StaticResource color5}"
