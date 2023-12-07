@@ -14,8 +14,11 @@ namespace blanc.Models
         public int seats { get; set; }
         public string[]? orderedItems{ get; set; }
         public float[]? bill {  get; set; }
-        
+
+        public double BillTotal { get; set; }
+
+
     }
 
- 
+
 }

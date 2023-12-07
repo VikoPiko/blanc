@@ -22,9 +22,10 @@
 
     <Window.DataContext>
         <viewModel:MiniTableViewModel/>
+        
     </Window.DataContext>
 
-    <Border CornerRadius="10" BorderThickness="3" >
+    <Border CornerRadius="10" BorderThickness="10" >
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -127,7 +128,7 @@ FontWeight="Medium"/>
                 </Border>
 
 
-                <Border Grid.Row="2" CornerRadius="10"  BorderThickness="2" >
+                <Border Grid.Row="2" CornerRadius="10"  BorderThickness="5" >
 
                     <Border.Background>
                         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -153,14 +154,8 @@ FontWeight="Medium"/>
                          HorizontalAlignment="Right"
                          AutoGenerateColumns="False"
                          IsReadOnly="False"
-                                   ColumnWidth="*"
-
-                         
-                                  CanUserResizeRows="False"
-     
-     
->
-
+                                   ColumnWidth="*"     
+                                  CanUserResizeRows="False">
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
@@ -189,9 +184,10 @@ FontWeight="Medium"/>
 
                         <!--Selected items  itemsorce should be added-->
                         <DataGrid ItemsSource="{Binding BillItems}"
+                                   SelectedItem="{Binding SelectedItem}"
                                   Grid.Column="0"
                                   VerticalAlignment="Top"
-                                  HorizontalAlignment="Stretch"
+                                  HorizontalAlignment="Left"
                                   AutoGenerateColumns="False"
                                   IsReadOnly="True"
                              ColumnWidth="*"
@@ -200,10 +196,24 @@ FontWeight="Medium"/>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
-                                <DataGridTextColumn Header="Total" Binding="{Binding TotalPrice}" />
+                                <DataGridTextColumn Header="Price" Binding="{Binding Price}" />
+                                <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal">
+
+                                                <Button Command="{Binding DataContext.RemoveFromBillCommand, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                CommandParameter="{Binding}">
+                                                    <fa:IconImage Icon="Minus" Style="{StaticResource ResourceKey=menuButtonIcon}"/>
+                                                </Button>
+
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
                             </DataGrid.Columns>
-                            
                         </DataGrid>
+                        
                         
                     </Grid>
 
@@ -219,9 +229,10 @@ FontWeight="Medium"/>
             </Grid>
 
             <Border Grid.Row="3" CornerRadius="10"  BorderThickness="5"  Margin="10,10,0,0">
+                
                 <StackPanel Orientation="Horizontal">
                     <RadioButton 
-        Command="{Binding ClearBillCommand}"
+                    Command="{Binding ClearTableCommand}"
                         Style="{StaticResource addButtton}" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
@@ -230,10 +241,8 @@ FontWeight="Medium"/>
                              >
                         <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
                     </RadioButton>
-                    
-                    
-                    
                 </StackPanel>
+                
             </Border>
 
         </Grid>

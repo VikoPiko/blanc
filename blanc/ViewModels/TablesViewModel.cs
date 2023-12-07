@@ -24,8 +24,9 @@ namespace blanc.ViewModels
     {
         const string tablesJsn = "Tables.json";
         const string menuJsn = "Menu.json";
+        const string billJsn = "Bill.json";
 
-        
+
 
         private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
 
@@ -54,10 +55,13 @@ namespace blanc.ViewModels
             }
         }
 
+
+       
+
         public int seats {  get; set; }
         public string[]? OrderedItems { get; set; }
         public float Bill {  get; set; }
-
+ 
         public ICommand MiniTableCr { get; private set; }
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
@@ -66,15 +70,18 @@ namespace blanc.ViewModels
         
       
         public ICommand PayBillCommand {  get; private set; }
-       
+ 
         public TablesViewModel() 
         {
            /* MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);*/
             AddTableCommand = new RelayCommand(AddTable);
             OpenMiniTablesCommand = new RelayCommand(OpenMiniTables);
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
-
+           
             Tables = new ObservableCollection<TableModel>();
+
+
+            CalculateTotalBill();
 
             string rawJson = File.ReadAllText(tablesJsn);
             List<TableModel>? table = JsonConvert.DeserializeObject<List<TableModel>>(rawJson);
@@ -88,6 +95,8 @@ namespace blanc.ViewModels
             }
 
         }
+
+      
 
         private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
         private void OpenMiniTables()
@@ -171,7 +180,54 @@ namespace blanc.ViewModels
             }
         }
 
+
+
+        private Dictionary<int, double> _tableBills;
+        public Dictionary<int, double> TableBills
+        {
+            get { return _tableBills; }
+            set
+            {
+                _tableBills = value;
+                OnPropertyChanged(nameof(TableBills));
+            }
+        }
+
+
+        private void CalculateTotalBill()
+        {
+
+            string billJson = File.ReadAllText(billJsn);
+            List<Bill> billItems = JsonConvert.DeserializeObject<List<Bill>>(billJson);
+
+            if (billItems == null) return;
+
+            var tableBills = new Dictionary<int, double>();
+            foreach (var item in billItems)
+            {
+                if (!tableBills.ContainsKey(item.tableId))
+                {
+                    tableBills[item.tableId] = 0;
+                }
+                tableBills[item.tableId] += item.Price * item.Quantity;
+            }
+
+            TableBills = tableBills;
+            ConvertDictionaryToCollection();
+            OnPropertyChanged(nameof(TableBillsCollection));
+        }
+
+        public ObservableCollection<Bill> TableBillsCollection { get; set; }
+
+        private void ConvertDictionaryToCollection()
+        {
+            TableBillsCollection = new ObservableCollection<Bill>(
+                TableBills.Select(kvp => new Bill { tableId = kvp.Key, BillTotal = kvp.Value })
+            );
+        }
+
     }
+
      
 
 }
