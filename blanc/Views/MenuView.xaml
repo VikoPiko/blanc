@@ -20,40 +20,59 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="80"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="0" CornerRadius="10"
-                    Background="Gray">
+
+            <Border Grid.Row="0" CornerRadius="10">
+
+
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="{DynamicResource BackgroundColor3}" Offset="0"/>
+                        <GradientStop Color="Transparent" Offset="0.7"/>
+                        <!-- Добавете допълнителни цветове и техните offset-и тук -->
+                        <!-- Пример: <GradientStop Color="YourThirdColor" Offset="1"/> -->
+                    </LinearGradientBrush>
+                </Border.Background>
 
 
                 <StackPanel Orientation="Vertical">
-                    <TextBlock Text="Menu Items"
-                               Foreground="{StaticResource titleColor1}"
-                               FontSize="22"
-                               FontFamily="Montserrat"
-                               FontWeight="Medium"
-                               VerticalAlignment="Center"
-                               Margin="20,10,0,10"/>
+                    <TextBlock Text="Menu"
+     Foreground="{StaticResource titleColor1}"
+     FontSize="22"
+     FontFamily="Montserrat"
+     FontWeight="Medium"
+     VerticalAlignment="Center"
+     Margin="20,10,0,10"/>
                     <!-- da se dobavi commanda-->
-                    <!--KAKVA ?????-->
-                    <StackPanel Orientation="Horizontal"
-                                Margin="10,0,0,0">
-                        <Button Height="30" Width="75"
-                                Content="Add Item"
-                                Command="{Binding AddItemCommand}"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="10,0,0,0">
+                        <RadioButton Style="{StaticResource addButtton}" 
+         VerticalAlignment="Top"
+         HorizontalAlignment="Left"
+         Tag="{StaticResource color5}"
+         IsChecked="True"
+         Command="{Binding AddItemCommand}">
+                            <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
+                        </RadioButton>
 
                         <!-- Нов Бутон -->
-                        <Button Height="30" Width="80"
-                                Content="Remove Item"
-                                Margin="10,0,0,0"
-                                Command="{Binding RemoveItemCommand}"/>
+                        <RadioButton Style="{StaticResource addButtton}" 
+                         VerticalAlignment="Top"
+                         HorizontalAlignment="Left"
+                         Tag="{StaticResource color5}"
+                         IsChecked="True"
+                         Command="{Binding RemoveItemCommand}">
+                            <fa:IconImage Icon="Minus" Style="{StaticResource ResourceKey=AddCategory}" />
+                        </RadioButton>
                     </StackPanel>
 
                 </StackPanel>
 
             </Border>
+
             <Grid Grid.Row="1">
                 <StackPanel>
                     <TextBlock Text="Name of Item" 
@@ -84,29 +103,17 @@
                              Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
                              Margin="0,5,0,5"/>
 
-                    <ListView ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding SelectedItem}"
-                              Name="CategoryList"
-                              Foreground="Black"
-                              Background="White"
-                               Height="600">
-                        <ListView.View>
-                            <GridView ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                <GridViewColumn Header="Id#" 
-                                                Width="40"
-                                                DisplayMemberBinding="{Binding ID_Menu}"/>
-                                <GridViewColumn Header="Name"
-                                                 Width="150" 
-                                                DisplayMemberBinding="{Binding Name}"/>
-                                <GridViewColumn Header="Description"
-                                                Width="500"
-                                                DisplayMemberBinding="{Binding Description}"/>
-                                <GridViewColumn Header="Price"
-                                                Width="110"
-                                                DisplayMemberBinding="{Binding Price}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DataGrid ItemsSource="{Binding Items}" 
+          SelectedItem="{Binding SelectedItem}" 
+          Name="CategoryList" 
+          AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id#" Width="40" Binding="{Binding ID_Menu}"/>
+                            <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Description" Width="*" Binding="{Binding Description}"/>
+                            <DataGridTextColumn Header="Price" Width="120" Binding="{Binding Price}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </Grid>
         </Grid>

@@ -86,15 +86,13 @@
             HorizontalAlignment="Center"
             Margin="0,-2,0,0"/>
                     <TextBox Width="200" Text="{Binding InputName, UpdateSourceTrigger=PropertyChanged}" Margin="10"/>
-                    <ListView ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}" Name="CategoryList" Foreground="Black" Background="White" Height="600">
-                        <ListView.View>
-                            <GridView ScrollViewer.VerticalScrollBarVisibility="Visible">
-                                <GridViewColumn Header="Id#" Width="50" DisplayMemberBinding="{Binding Id}"/>
-                                <GridViewColumn Header="Num" Width="200" DisplayMemberBinding="{Binding Number}"/>
-                                <GridViewColumn Header="Name" Width="400" DisplayMemberBinding="{Binding Name}"/>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DataGrid ItemsSource="{Binding Reservations}" SelectedItem="{Binding SelectedReservation}" Name="CategoryList"  AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Id#" Width="60" Binding="{Binding Id}"/>
+                            <DataGridTextColumn Header="Num" Width="*" Binding="{Binding Number}"/>
+                            <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </StackPanel>
             </Grid>
         </Grid>
