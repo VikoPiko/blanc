@@ -18,11 +18,11 @@
         Opacity="1"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
-    
+
 
     <Window.DataContext>
         <viewModel:MiniTableViewModel/>
-        
+
     </Window.DataContext>
 
     <Border CornerRadius="10" BorderThickness="10" >
@@ -30,11 +30,11 @@
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
-               
+
                 <GradientStop Color="{StaticResource winBorderColor3}" Offset="0"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
-        
+
         <Border.Background>
             <LinearGradientBrush>
                 <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
@@ -120,11 +120,11 @@ FontWeight="Medium"/>
                             <GradientStop Color="{DynamicResource BackgroundColor}" Offset="1"/>
                             <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.4"/>
                             <GradientStop Color="{StaticResource BackgroundColor}" Offset="0"/>
-                         
+
                         </LinearGradientBrush>
                     </Border.Background>
 
-                    
+
                 </Border>
 
 
@@ -213,8 +213,8 @@ FontWeight="Medium"/>
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        
-                        
+
+
                     </Grid>
 
 
@@ -223,16 +223,16 @@ FontWeight="Medium"/>
 
                 </Border>
 
-                
+
 
 
             </Grid>
 
             <Border Grid.Row="3" CornerRadius="10"  BorderThickness="5"  Margin="10,10,0,0">
-                
+
                 <StackPanel Orientation="Horizontal">
                     <RadioButton 
-                    Command="{Binding ClearTableCommand}"
+                    Command="{Binding CalculateSumCommand}"
                         Style="{StaticResource addButtton}" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
@@ -241,11 +241,12 @@ FontWeight="Medium"/>
                              >
                         <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
                     </RadioButton>
+                    <TextBlock Text="{Binding Sum}" Width="133" Height="27"/>
                 </StackPanel>
-                
+
             </Border>
 
         </Grid>
     </Border>
-    
+
 </Window>
