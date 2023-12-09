@@ -116,7 +116,14 @@ namespace blanc.Views
                 var tableBills = allBills.Where(b => b.tableId == currentTableId);
                 viewModel.BillItems = new ObservableCollection<Bill>(tableBills);
             }
-           
+
+            // Execute the CalculateSum command
+            if (viewModel != null && viewModel.CalculateSumCommand.CanExecute(null))
+            {
+                viewModel.CalculateSumCommand.Execute(null);
+            }
         }
+
+       
     }
 }

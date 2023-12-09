@@ -16,6 +16,8 @@ using Menu = blanc.Models.Menu;
 using System.Windows.Documents;
 using System.Diagnostics;
 using static blanc.ViewModels.TablesViewModel;
+using System.Net.Http.Json;
+using System.Text.Json.Nodes;
 
 namespace blanc.ViewModels
 {
@@ -83,14 +85,15 @@ namespace blanc.ViewModels
 
         /*public ICommand ClearTableCommand { get; private set; }*/
 
-        public ICommand CalculateSumCommand { get; private set; }
+       public ICommand CalculateSumCommand { get; private set; }
 
         public ICommand RemoveFromBillCommand { get; private set; }
         public ICommand AddToBillCommand { get; private set; }
+     
 
         public MiniTableViewModel()
         {
-
+            
             BillItems = new ObservableCollection<Bill>();
             MenuItems = new ObservableCollection<Menu>();
             AddToBillCommand = new RelayCommand(AddToBill);
@@ -102,12 +105,14 @@ namespace blanc.ViewModels
             LoadMenuItems();
         }
 
-        private void CalculateSum()
+       
+
+        public void CalculateSum()
         {
             if (BillItems != null)
             {
-                double sum = BillItems.Sum(item => item.Price);
-                Sum = sum;
+                double calculateSum = BillItems.Sum(item => item.Price);
+                Sum = calculateSum;
             }
         }
 
@@ -145,6 +150,7 @@ namespace blanc.ViewModels
                 };
                 BillItems.Add(billItem);
             }
+            CalculateSum();
         }
 
 
@@ -155,6 +161,7 @@ namespace blanc.ViewModels
             {
                 BillItems.Remove(itemToRemove);
             }
+            CalculateSum();
         }
 
 
