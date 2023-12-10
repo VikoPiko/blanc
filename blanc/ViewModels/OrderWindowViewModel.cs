@@ -56,6 +56,8 @@ namespace blanc.ViewModels
 
         public OrderWindowViewModel() 
         {
+
+
             LoadOrders();
         }
 

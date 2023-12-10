@@ -49,6 +49,18 @@ namespace blanc.ViewModels
             _orders = new ObservableCollection<Orders>();
             OpenOrderWindowCommand = new RelayCommand(OpenOrderWindow);
             RemoveOrderCommand = new RelayCommand(RemoveOrder, CanRemoveOrder);
+
+            _Orders = new ObservableCollection<Orders>();
+            string rawJson = File.ReadAllText(orderJson);
+            List<Orders>? order = JsonConvert.DeserializeObject<List<Orders>>(rawJson);
+
+            if (order != null)
+            {
+                foreach (var ord in order)
+                {
+                    _Orders.Add(ord);
+                }
+            }
         }
 
         private bool CanRemoveOrder()

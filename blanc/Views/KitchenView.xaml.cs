@@ -13,7 +13,6 @@ namespace blanc.Views
         public KitchenView()
         {
             InitializeComponent();
-            this.DataContext = new KitchenViewModel();
         }
         private void OpenOrderWindow_Click(object sender, RoutedEventArgs e)
         {

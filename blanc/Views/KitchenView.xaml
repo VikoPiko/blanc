@@ -45,16 +45,16 @@
                     <DataGridTextColumn Header="Num"
                                         Binding="{Binding TableNumber}"
                                         Width="60"/>
-                    <DataGridTemplateColumn Header="Operations"
+                    <DataGridTemplateColumn Header="Order Operations"
                                             IsReadOnly="True"
                                             Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel Orientation="Horizontal">
                                     <Button Command="{Binding DataContext.OpenOrderWindowCommand,
-                         RelativeSource={RelativeSource FindAncestor,
-                         AncestorType={x:Type UserControl}}}"
-        CommandParameter="{Binding}">
+                                                      RelativeSource={RelativeSource FindAncestor,
+                                                      AncestorType={x:Type UserControl}}}"
+                                                      CommandParameter="{Binding}">
                                         <fa:IconImage Icon="Bars"
                                                       Style="{StaticResource ResourceKey=menuButtonIcon}"/>
                                     </Button>
