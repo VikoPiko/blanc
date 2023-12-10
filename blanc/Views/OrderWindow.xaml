@@ -41,7 +41,7 @@
                        HorizontalAlignment="Left"
                        Margin="20 0 0 0"
                        Text="ORDER#"/>
-            <TextBlock Text="{Binding _Orders.Count}"
+            <TextBlock Text="{Binding BillItems.Count}"
                        Foreground="White"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Right"
@@ -64,7 +64,7 @@
                         <ColumnDefinition Width="200"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid ItemsSource="{Binding BillItems}"
+                    <DataGrid ItemsSource="{Binding ItemsFromOrder}"
                               FontSize="7"
                               Margin="0 0 0 0"
                               AutoGenerateColumns="False">
@@ -74,7 +74,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <DataGrid Grid.Column="1"
-                              ItemsSource="{Binding _Orders}"
+                              ItemsSource="{Binding BillItems}"
                               AutoGenerateColumns="False"
                               FontSize="5"
                               Width="70"

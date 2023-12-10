@@ -21,17 +21,15 @@ namespace blanc.Views
 {
     public partial class OrderWindow : Window
     {
-
-        private KitchenView _mainWindowKitchen;
-        const string billJsn = "Bill.json";
+        const string orderJsn = "Orders.json";
         public OrderWindow()
         {
             try
             {
                 InitializeComponent();
-                MiniTableViewModel viewModel = new MiniTableViewModel();
+/*                OrderWindowViewModel viewModel = new OrderWindowViewModel();
 
-                this.DataContext = viewModel;
+                this.DataContext = viewModel;*/
             }
             catch (Exception ex)
             {
@@ -65,8 +63,8 @@ namespace blanc.Views
             OrderWindowViewModel? viewModel = this.DataContext as OrderWindowViewModel;
             if (viewModel != null) 
             {
-                int currentOrderId = viewModel.OrderSelected.tableId;
-                string orderData = File.ReadAllText(billJsn);
+                int currentOrderId = viewModel.Items.OrderID; // tuka crashva 
+                string orderData = File.ReadAllText(orderJsn);
                 var allOrders = JsonConvert.DeserializeObject<List<Orders>>(orderData) ?? new List<Orders>();
                 var tableOrders = allOrders.Where(b => b.OrderID == currentOrderId);
                 viewModel.ItemsFromOrder = new ObservableCollection<Orders>(tableOrders);

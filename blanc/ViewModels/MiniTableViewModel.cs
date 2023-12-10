@@ -158,7 +158,7 @@ namespace blanc.ViewModels
             try
             {
                 string menuJson = File.ReadAllText(menuJsn);
-                List<Menu> menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
+                List<Menu>? menuItems = JsonConvert.DeserializeObject<List<Menu>>(menuJson);
                 MenuItems = new ObservableCollection<Menu>(menuItems);
                 OnPropertyChanged(nameof(MenuItems));
             }

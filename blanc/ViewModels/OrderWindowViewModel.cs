@@ -1,5 +1,6 @@
 ﻿using blanc.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +16,10 @@ namespace blanc.ViewModels
 {
     public  class OrderWindowViewModel : ViewModelBase
     {
-        const string billJsn = "Bill.json";
+        //const string billJsn = "Bill.json";
+        const string ordJsn = "Orders.json";
 
-        private Bill _orderSelected;
+/*        private Bill _orderSelected;
         public Bill OrderSelected
         {
             get => _orderSelected;
@@ -26,7 +28,7 @@ namespace blanc.ViewModels
                 _orderSelected = value;
                 OnPropertyChanged(nameof(OrderSelected));
             }
-        }
+        }*/
         private Orders _items;// honestly ne znam dali mi trqbva tva :"D
         public Orders Items 
         {
@@ -36,14 +38,14 @@ namespace blanc.ViewModels
                 _items = value; OnPropertyChanged(nameof(Items));
             }
         } // honestly ne znam dali mi trqbva tva :"D
-
+/*
         private ObservableCollection<Bill>? _billItems;
         public ObservableCollection<Bill>? BillItems // used to store the bill items which have been ordered; mai? 
         {
             get => _billItems;
             set { _billItems = value; OnPropertyChanged(nameof(BillItems)); }
         }
-
+*/
         private ObservableCollection<Orders>? _itemsFromOrder; // honestly ne znam dali mi trqbva tva :"D
         public ObservableCollection<Orders>? ItemsFromOrder 
         {
@@ -65,10 +67,10 @@ namespace blanc.ViewModels
         {
             try
             {
-                string billJson = File.ReadAllText(billJsn);
-                List<Bill> billItems = JsonConvert.DeserializeObject<List<Bill>>(billJsn);
-                BillItems = new ObservableCollection<Bill>(billItems);
-                OnPropertyChanged(nameof(BillItems));
+                string orderJson = File.ReadAllText(ordJsn);
+                List<Orders>? orderItems = JsonConvert.DeserializeObject<List<Orders>>(ordJsn);
+                ItemsFromOrder = new ObservableCollection<Orders>(orderItems);
+                OnPropertyChanged(nameof(ItemsFromOrder));
             }
             catch (FileNotFoundException ex)
             {

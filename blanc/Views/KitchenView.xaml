@@ -54,17 +54,25 @@
                                     <Button Command="{Binding DataContext.OpenOrderWindowCommand,
                                                       RelativeSource={RelativeSource FindAncestor,
                                                       AncestorType={x:Type UserControl}}}"
-                                                      CommandParameter="{Binding}">
+                                                      CommandParameter="{Binding}"
+                                            Margin="150 0 0 0">
                                         <fa:IconImage Icon="Bars"
                                                       Style="{StaticResource ResourceKey=menuButtonIcon}"/>
                                     </Button>
+                                    <Button Command="{Binding OrderReadyCommand}"
+                                            Width="50"
+                                            Height="30"
+                                            Content="Ready"
+                                            Foreground="Black"
+                                            Margin="150 0 0 0"
+                                            Background="LightGreen"/>
                                     <Button Command="{Binding RemoveOrderCommand}"
-                                            Width="70"
-                                            Height="50"
+                                            Width="100"
+                                            Height="30"
+                                            Margin="150 0 0 0"
                                             Content="Remove Order"
                                             Foreground="Black"
-                                            Background="Red">
-                                    </Button>
+                                            Background="Red"/>
                                 </StackPanel>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

@@ -43,12 +43,14 @@ namespace blanc.ViewModels
 
         public ICommand OpenOrderWindowCommand { get; private set; }
         public ICommand RemoveOrderCommand { get; private set; }
+        public ICommand OrderReadyCommand { get; private set; }
 
         public KitchenViewModel()
         {
             _orders = new ObservableCollection<Orders>();
             OpenOrderWindowCommand = new RelayCommand(OpenOrderWindow);
             RemoveOrderCommand = new RelayCommand(RemoveOrder, CanRemoveOrder);
+            OrderReadyCommand = new RelayCommand(OrderReady);
 
             _Orders = new ObservableCollection<Orders>();
             string rawJson = File.ReadAllText(orderJson);
@@ -63,6 +65,15 @@ namespace blanc.ViewModels
             }
         }
 
+        private void OrderReady()
+        {
+            if (_selectedOrderItem != null)
+            {
+                _Orders.Remove(_selectedOrderItem);
+                string json = JsonConvert.SerializeObject(_Orders, Formatting.Indented);
+                File.WriteAllText(orderJson, json);
+            }
+        }
         private bool CanRemoveOrder()
         {
             return _selectedOrderItem != null;
