@@ -76,6 +76,7 @@ namespace blanc.ViewModels
             get => _billItems;
             set { _billItems = value; OnPropertyChanged(nameof(BillItems)); }
         }
+
         private Menu? _selectedItems;
         public ObservableCollection<Menu> MenuItems
         {
