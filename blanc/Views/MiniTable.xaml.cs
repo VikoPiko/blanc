@@ -47,6 +47,8 @@ namespace blanc.Views
                 viewModel.SelectedTable = selectedTable;
             }
         }
+
+     
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             // Check if left mouse button is pressed
@@ -110,7 +112,7 @@ namespace blanc.Views
             MiniTableViewModel viewModel = this.DataContext as MiniTableViewModel;
             if (viewModel != null && viewModel.SelectedTable != null)
             {
-                int currentTableId = viewModel.SelectedTable.tableId; // Assuming you have a SelectedTable property
+                int currentTableId = viewModel.SelectedTable.tableId; 
                 string billData = File.ReadAllText(billJsn);
                 var allBills = JsonConvert.DeserializeObject<List<Bill>>(billData) ?? new List<Bill>();
                 var tableBills = allBills.Where(b => b.tableId == currentTableId);
