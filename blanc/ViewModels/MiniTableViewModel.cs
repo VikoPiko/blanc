@@ -16,6 +16,9 @@ using Menu = blanc.Models.Menu;
 using System.Windows.Documents;
 using System.Diagnostics;
 using static blanc.ViewModels.TablesViewModel;
+using System.Net.Http.Json;
+using System.Text.Json.Nodes;
+using System.Collections;
 
 namespace blanc.ViewModels
 {
@@ -39,6 +42,30 @@ namespace blanc.ViewModels
             }
         }
 
+        private Bill _selectedOrder;
+        public Bill SelectedOrder
+        {
+            get =>  _selectedOrder; 
+            set
+            {
+                _selectedOrder = value;
+                OnPropertyChanged(nameof(SelectedOrder));
+
+            }
+        }
+
+        private ObservableCollection<Orders> _orders;
+        public ObservableCollection<Orders> _Orders
+        { 
+            get => _orders;
+            set 
+            {
+                _orders = value;    
+                OnPropertyChanged(nameof(_Orders));
+            }
+            
+        }
+
         private ObservableCollection<Menu>? _menuItems;
         private ObservableCollection<Bill>? _billItems;
 
@@ -55,6 +82,8 @@ namespace blanc.ViewModels
             get => _menuItems;
             set { _menuItems = value; OnPropertyChanged(nameof(MenuItems)); }
         }
+      
+    
         private Menu _selectedMenuItem;
         public Menu SelectedItem
         {
@@ -78,8 +107,17 @@ namespace blanc.ViewModels
             }
         }
 
+        /*private ObservableCollection<Bill> _selectedOrders = new ObservableCollection<Bill>();
 
-
+        public ObservableCollection<Bill> SelectedOrders
+        {
+            get => _selectedOrders;
+            set
+            {
+                _selectedOrders = value;
+                OnPropertyChanged(nameof(SelectedOrders));
+            }
+        }*/
 
         /*public ICommand ClearTableCommand { get; private set; }*/
 
@@ -87,12 +125,15 @@ namespace blanc.ViewModels
 
         public ICommand RemoveFromBillCommand { get; private set; }
         public ICommand AddToBillCommand { get; private set; }
+        public ICommand AddToOrderCommand { get; private set; }
+     
 
         public MiniTableViewModel()
         {
-
+            AddToOrderCommand = new RelayCommand(AddToOrder);           
             BillItems = new ObservableCollection<Bill>();
             MenuItems = new ObservableCollection<Menu>();
+            _Orders = new ObservableCollection<Orders>();
             AddToBillCommand = new RelayCommand(AddToBill);
             RemoveFromBillCommand = new RelayCommandWithObject(RemoveFromBill);
             CalculateSumCommand = new RelayCommand(CalculateSum);
@@ -102,12 +143,14 @@ namespace blanc.ViewModels
             LoadMenuItems();
         }
 
-        private void CalculateSum()
+       
+
+        public void CalculateSum()
         {
             if (BillItems != null)
             {
-                double sum = BillItems.Sum(item => item.Price);
-                Sum = sum;
+                double calculateSum = BillItems.Sum(item => item.Price);
+                Sum = calculateSum;
             }
         }
 
@@ -145,6 +188,7 @@ namespace blanc.ViewModels
                 };
                 BillItems.Add(billItem);
             }
+            CalculateSum();
         }
 
 
@@ -155,8 +199,26 @@ namespace blanc.ViewModels
             {
                 BillItems.Remove(itemToRemove);
             }
+            CalculateSum();
         }
 
+        private void AddToOrder()
+        {
+            foreach (var selectedOrder in BillItems)
+            {
+                var newOrder = new Orders
+                {
+                    OrderID = _Orders.Count + 1,
+                    TableNumber = selectedOrder.tableId,
+                    ItemName = selectedOrder.Name,
+                    Quantity = selectedOrder.Quantity,
+                };
+                _Orders.Add(newOrder);
+            }
+
+            string orders = JsonConvert.SerializeObject(_Orders, Formatting.Indented);
+            File.WriteAllText("Orders.json", orders);
+        }
 
 
 
@@ -197,7 +259,7 @@ namespace blanc.ViewModels
 
               }*/
 
- 
+
 
     }
 }

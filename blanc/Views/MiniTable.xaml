@@ -183,8 +183,10 @@ FontWeight="Medium"/>
 
 
                         <!--Selected items  itemsorce should be added-->
-                        <DataGrid ItemsSource="{Binding BillItems}"
-                                   SelectedItem="{Binding SelectedItem}"
+                        <DataGrid 
+                                  ItemsSource="{Binding BillItems}"
+                             SelectedItem ="{Binding SelectedOrders}"
+                                  x:Name="OrderListView"
                                   Grid.Column="0"
                                   VerticalAlignment="Top"
                                   HorizontalAlignment="Left"
@@ -192,7 +194,7 @@ FontWeight="Medium"/>
                                   IsReadOnly="True"
                              ColumnWidth="*"
                             CanUserResizeRows="False"
-                                  >
+                          >
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                                 <DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" Width="100"/>
@@ -232,14 +234,15 @@ FontWeight="Medium"/>
 
                 <StackPanel Orientation="Horizontal">
                     <RadioButton 
-                    Command="{Binding CalculateSumCommand}"
+                    Command ="{Binding AddToOrderCommand}"
+                       
                         Style="{StaticResource addButtton}" 
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
                     Tag="{StaticResource color5}"
                     IsChecked="True"
                              >
-                        <fa:IconImage Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
+                        <fa:IconImage  Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
                     </RadioButton>
                     <TextBlock Text="{Binding Sum}" Width="133" Height="27"/>
                 </StackPanel>
