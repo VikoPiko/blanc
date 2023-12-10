@@ -122,7 +122,6 @@ namespace blanc.ViewModels
         /*public ICommand ClearTableCommand { get; private set; }*/
 
         public ICommand CalculateSumCommand { get; private set; }
-
         public ICommand RemoveFromBillCommand { get; private set; }
         public ICommand AddToBillCommand { get; private set; }
         public ICommand AddToOrderCommand { get; private set; }

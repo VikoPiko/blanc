@@ -26,12 +26,7 @@ namespace blanc.ViewModels
         const string menuJsn = "Menu.json";
         const string billJsn = "Bill.json";
 
-
-
         private ObservableCollection<TableModel> _tables = new ObservableCollection<TableModel>();
-
-
-       
         public ObservableCollection<TableModel> Tables 
         {
             get { return _tables; }
@@ -41,8 +36,6 @@ namespace blanc.ViewModels
                 OnPropertyChanged(nameof(Tables));
             }
         }
-
-
        private TableModel _selectedTable;
        public TableModel SelectedTable
         {
@@ -55,9 +48,6 @@ namespace blanc.ViewModels
             }
         }
 
-
-       
-
         public int seats {  get; set; }
         public string[]? OrderedItems { get; set; }
         public float Bill {  get; set; }
@@ -67,8 +57,6 @@ namespace blanc.ViewModels
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
         public ICommand OpenMiniTablesCommand { get; private set;  }
-        
-      
         public ICommand PayBillCommand {  get; private set; }
  
         public TablesViewModel() 
@@ -79,8 +67,6 @@ namespace blanc.ViewModels
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
            
             Tables = new ObservableCollection<TableModel>();
-
-
             CalculateTotalBill();
 
             string rawJson = File.ReadAllText(tablesJsn);
@@ -93,11 +79,7 @@ namespace blanc.ViewModels
                     Tables.Add(item);
                 }
             }
-
         }
-
-      
-
         private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
         private void OpenMiniTables()
         {
@@ -106,7 +88,6 @@ namespace blanc.ViewModels
                 // Зареждате всички маси от JSON файла
                 string json = File.ReadAllText(tablesJsn);
                 List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(json);
-             
                 // Ако съответната маса е намерена
                 if (SelectedTable != null && !openTables.ContainsKey(SelectedTable.tableId))
                 {
@@ -118,9 +99,6 @@ namespace blanc.ViewModels
                 }
             }
          }
-
-        
-
         public void AddTable()
         {
 
@@ -143,11 +121,7 @@ namespace blanc.ViewModels
                 });
             }
             string json = JsonConvert.SerializeObject(table, Formatting.Indented);
-
-
             File.WriteAllText(tablesJsn, json);
-
-
         }
         private bool CanRemoveTable()
         {
@@ -165,10 +139,6 @@ namespace blanc.ViewModels
             }
         }
 
-
-
-
-
         private List<Menu> _menuItems;
         public List<Menu> MenuItems
         {
@@ -179,8 +149,6 @@ namespace blanc.ViewModels
                 OnPropertyChanged(nameof(MenuItems));
             }
         }
-
-
 
         private Dictionary<int, double> _tableBills;
         public Dictionary<int, double> TableBills
@@ -193,10 +161,8 @@ namespace blanc.ViewModels
             }
         }
 
-
         private void CalculateTotalBill()
         {
-
             string billJson = File.ReadAllText(billJsn);
             List<Bill> billItems = JsonConvert.DeserializeObject<List<Bill>>(billJson);
 
@@ -211,7 +177,6 @@ namespace blanc.ViewModels
                 }
                 tableBills[item.tableId] += item.Price * item.Quantity;
             }
-
             TableBills = tableBills;
             ConvertDictionaryToCollection();
             OnPropertyChanged(nameof(TableBillsCollection));
@@ -225,9 +190,5 @@ namespace blanc.ViewModels
                 TableBills.Select(kvp => new Bill { tableId = kvp.Key, BillTotal = kvp.Value })
             );
         }
-
     }
-
-     
-
 }
