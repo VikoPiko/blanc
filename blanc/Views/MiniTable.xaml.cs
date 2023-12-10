@@ -23,6 +23,8 @@ namespace blanc.Views
     public partial class MiniTable : Window
     {
         private TablesView _mainWindow;
+
+
         const string billJsn = "Bill.json";
         public MiniTable()
         {
@@ -38,6 +40,15 @@ namespace blanc.Views
                 // Handle the exception
                 MessageBox.Show("An error occurred while opening the table.");
             }
+
+
+
+        }
+
+        private void ViewModel_CloseMiniTableViewRequested(object sender, EventArgs e)
+        {
+            // Затваряне на текущия MiniTableView
+            Close();
         }
         public MiniTable(TableModel selectedTable):this()
         {
