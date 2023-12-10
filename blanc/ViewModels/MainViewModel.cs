@@ -24,14 +24,14 @@ namespace blanc.ViewModels
 
         private IUserRepository userRepository;
 
-        private BillViewModel _billModel;
+      
         private TablesViewModel _tablesViewModel;
         private CategoryViewModel _categoryViewModel;
         private KitchenViewModel _kitchenViewModel;
         private MenuViewModel _menuViewModel;
         private StaffViewModel _staffViewModel;
         private DashboardViewModel _dashboardViewModel;
-        private SettingsViewModel _settings;
+ 
 
 
         public UserAccountModel? CurrentUserAccount
@@ -85,13 +85,13 @@ namespace blanc.ViewModels
 
 
         public ICommand ShowDashboardCommand { get; }
-        public ICommand ShowStaffCommand { get; }
+ 
         public ICommand ShowCategoryCommand { get; }
         public ICommand ShowMenuCommand { get; }
-        public ICommand ShowBillCommand { get; }
+    
         public ICommand ShowKitchenCommand { get; }
         public ICommand ShowTablesCommand { get; }
-        public ICommand ShowSettingsCommand { get; }
+
 
         public MainViewModel()
         {
@@ -99,13 +99,11 @@ namespace blanc.ViewModels
             CurrentUserAccount = new UserAccountModel();
 
             ShowDashboardCommand = new ViewModelCommands(ExecuteShowDashboardViewCommand);
-            ShowStaffCommand = new ViewModelCommands(ExecuteShowStaffViewCommand);
             ShowCategoryCommand = new ViewModelCommands(ExecuteShowCategoryCommand);
             ShowMenuCommand = new ViewModelCommands(ExecuteShowMenuCommand);
-            ShowBillCommand = new ViewModelCommands(ExecuteShowBillCommand);
             ShowKitchenCommand = new ViewModelCommands(ExecuteShowKitchenCommand);
             ShowTablesCommand = new ViewModelCommands(ExecuteShowTablesCommand);
-            ShowSettingsCommand = new ViewModelCommands(ExecuteSettingsViewCommand);
+           
 
             ExecuteShowDashboardViewCommand(null);
 
@@ -135,16 +133,7 @@ namespace blanc.ViewModels
             Icon = IconChar.CodeFork;
         }
 
-        private void ExecuteShowBillCommand(object obj)
-        {
-            if (_billModel == null)
-            {
-                _billModel = new BillViewModel();
-            }
-            CurrentChildView = _billModel;
-            Caption = "Bill";
-            Icon = IconChar.CreditCard;
-        }
+       
         private void ExecuteShowCategoryCommand(object obj)
         {
 
@@ -168,16 +157,7 @@ namespace blanc.ViewModels
             Icon = IconChar.Book;
         }
 
-        private void ExecuteShowStaffViewCommand(object obj)
-        {
-            if (_staffViewModel == null)
-            {
-                _staffViewModel = new StaffViewModel();
-            }
-            CurrentChildView = _staffViewModel;
-            Caption = "Staff";
-            Icon = IconChar.UserGroup;
-        }
+ 
         private void ExecuteShowDashboardViewCommand(object? obj)
         {
             if (_dashboardViewModel == null)
@@ -189,17 +169,7 @@ namespace blanc.ViewModels
             Icon = IconChar.Home;
         }
 
-        private void ExecuteSettingsViewCommand(object? obj)
-        {
-            if (_settings == null)
-            {
-                _settings = new SettingsViewModel();
-            }
-            CurrentChildView = _settings;
-            Caption = "Settings";
-            Icon = IconChar.Plus;
-        }
-
+       
         private void LoadCurrentUserData()
         {
             if (userRepository != null)

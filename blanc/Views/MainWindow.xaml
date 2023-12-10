@@ -118,7 +118,7 @@
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Table"
                                           Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Category"
+                            <TextBlock Text="Reservations"
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
@@ -132,26 +132,7 @@
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color3}"
-                                 Command="{Binding ShowBillCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="CreditCard"
-                                          Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Bill"
-                                       Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color6}"
-                                 Command="{Binding ShowStaffCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Users"
-                                          Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Staff"
-                                       Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color7}"
                                  Command="{Binding ShowKitchenCommand}">
@@ -172,16 +153,7 @@
                                        Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color9}"
-                                 Command="{Binding ShowSettingsCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Gear"
-                                          Style="{StaticResource ResourceKey=menuButtonIcon}"/>
-                            <TextBlock Text="Settings"
-                                       Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
+
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color10}"
                                  Click="btnLogout_Click" Checked="RadioButton_Checked_1">
