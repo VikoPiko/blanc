@@ -74,67 +74,39 @@
             </Border>
 
             <Grid Grid.Row="1">
-                <Border>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                   
-
-                    <StackPanel Grid.Column="0">
-                        <TextBlock Text="Name of Item" 
-           Style="{StaticResource menuButtonText}" 
-           Foreground="{StaticResource plainTextColor1}"
-           HorizontalAlignment="Center"
-           Margin="0,5,0,0"/>
-                        <TextBox Width="150"
-             HorizontalAlignment="Center"
-             Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
-             Margin="0,5,0,0"/>
-                    </StackPanel>
-
-                        <StackPanel Grid.Column="1">
-                            <TextBlock Text="Item Description" 
-               Style="{StaticResource menuButtonText}" 
-               Foreground="{StaticResource plainTextColor1}"
-               HorizontalAlignment="Center"
-               Margin="0,5,0,0"/>
-                            <TextBox Width="200"
-             Text="{Binding ItemDescription, UpdateSourceTrigger=PropertyChanged}"
-             Margin="0,5,0,5"
-             HorizontalAlignment="Center"/>
-
-                        </StackPanel>
-                        <StackPanel Grid.Column="2">
-                            <TextBlock Text="Item Price" 
-       Style="{StaticResource menuButtonText}" 
-       Foreground="{StaticResource plainTextColor1}"
-       HorizontalAlignment="Center"
-       Margin="0,5,0,0"/>
-                            <TextBox Width="150"
-         HorizontalAlignment="Center"
-         Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
-         Margin="0,5,0,5"/>
-
-                        </StackPanel>
-                        
-                        
-                    </Grid>
-                    
-                    
-
-                </Border>
-
                 <StackPanel>
+                    <TextBlock Text="Name of Item" 
+                           Style="{StaticResource menuButtonText}" 
+                           Foreground="{StaticResource plainTextColor1}"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+                    <TextBox Width="150"
+                             HorizontalAlignment="Center"
+                             Text="{Binding ItemName, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,0"/>
+                    <TextBlock Text="Item Description" 
+                               Style="{StaticResource menuButtonText}" 
+                               Foreground="{StaticResource plainTextColor1}"
+                               HorizontalAlignment="Center"
+                               Margin="0,5,0,0"/>
+                    <TextBox Width="200"
+                             Text="{Binding ItemDescription, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,5"
+                             HorizontalAlignment="Center"/>
+                    <TextBlock Text="Item Price" 
+                           Style="{StaticResource menuButtonText}" 
+                           Foreground="{StaticResource plainTextColor1}"
+                           HorizontalAlignment="Center"
+                           Margin="0,5,0,0"/>
+                    <TextBox Width="150"
+                             HorizontalAlignment="Center"
+                             Text="{Binding ItemPrice, UpdateSourceTrigger=PropertyChanged}"
+                             Margin="0,5,0,5"/>
 
                     <DataGrid ItemsSource="{Binding Items}" 
-SelectedItem="{Binding SelectedItem}" 
-Name="CategoryList" 
-AutoGenerateColumns="False"
-                              Margin="10,70,10,0"
-                              >
+          SelectedItem="{Binding SelectedItem}" 
+          Name="CategoryList" 
+          AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="Id#" Width="40" Binding="{Binding ID_Menu}"/>
                             <DataGridTextColumn Header="Name" Width="*" Binding="{Binding Name}"/>
@@ -143,7 +115,6 @@ AutoGenerateColumns="False"
                         </DataGrid.Columns>
                     </DataGrid>
                 </StackPanel>
-
             </Grid>
         </Grid>
     </Border>

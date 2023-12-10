@@ -199,9 +199,8 @@
     </Style>
 
     <!-- Style for Cells -->
-    
-
     <Style TargetType="DataGridCell">
+
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Left"/>
@@ -209,17 +208,8 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="{StaticResource plainTextColor4}"/>
         <!-- Soft main color for text -->
-
-        <Style.Triggers>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="{StaticResource winBorderColor2S}"/>
-                <!-- Change #YourSelectedColorHere to the color you want for the selected cell -->
-                <Setter Property="Foreground" Value="{StaticResource winBorderColor1S}"/>
-                <!-- Change #YourSelectedForegroundColorHere to the color you want for the text in the selected cell -->
-            </Trigger>
-        </Style.Triggers>
     </Style>
-
+    
     <Style TargetType="DataGridRow">
         <Setter Property="Padding" Value="0"/>
         <Setter Property="Margin" Value="0"/>

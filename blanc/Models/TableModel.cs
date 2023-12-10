@@ -16,7 +16,8 @@ namespace blanc.Models
         public float[]? bill {  get; set; }
 
         public double BillTotal { get; set; }
-        public double TotalBill { get;  set; }
+
+
     }
 
 

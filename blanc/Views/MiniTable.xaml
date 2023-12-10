@@ -17,8 +17,7 @@
         WindowStartupLocation="CenterOwner"
         Opacity="1"
         Loaded="Window_Loaded"
-        Closing="Window_Closing"
-        WindowState="Maximized">
+        Closing="Window_Closing">
 
 
     <Window.DataContext>
@@ -234,60 +233,19 @@ FontWeight="Medium"/>
             <Border Grid.Row="3" CornerRadius="10"  BorderThickness="5"  Margin="10,10,0,0">
 
                 <StackPanel Orientation="Horizontal">
-                    <StackPanel Orientation="Vertical">
-                        <TextBlock Text="Approve order" Foreground="{StaticResource plainTextColor4}"
-Background="Transparent" FontFamily="Montesserat" FontSize="20">
-
-                        </TextBlock>
-                        <RadioButton 
-            
-        Command ="{Binding AddToOrderCommand}"
-          Click="ViewModel_CloseMiniTableViewRequested"
-            Style="{StaticResource addButtton}" 
-        VerticalAlignment="Center"
-        HorizontalAlignment="Center"
-        Tag="{StaticResource color5}"
-        IsChecked="True"
-                 >
-                            <fa:IconImage  Icon="PlusSquare" Style="{StaticResource ResourceKey=AddCategory}" />
-                        </RadioButton>
-                    </StackPanel>
-
-                   
-                    
-                   
-
-                    <StackPanel Orientation="Vertical" VerticalAlignment="Center" HorizontalAlignment="Right">
-
-                        <StackPanel Orientation="Vertical">
-                            <TextBlock Text="Bill" 
-                                       Margin="34,0,0,0"
-                                       VerticalAlignment="Center"
-                                       Foreground="{StaticResource plainTextColor4}"
-Background="Transparent" FontFamily="Montesserat" FontSize="20">
-
-                            </TextBlock>
-                            <RadioButton 
-            
-        Command ="{Binding ClearTableCommand}"
-          Click="ViewModel_CloseMiniTableViewRequested"
-            Style="{StaticResource addButtton}" 
-        VerticalAlignment="Center"
-        HorizontalAlignment="Center"
-        Tag="{StaticResource color5}"
-        IsChecked="True"
-                 >
-                                <fa:IconImage  Icon="PlusSquare" Style="{StaticResource ResourceKey=AddCategory}" />
-                            </RadioButton>
-                            
-                        </StackPanel>
-
-                    </StackPanel>
-                    <TextBlock Text="{Binding Sum}" Width="133" Height="27"
-            Foreground="{StaticResource plainTextColor4}"
-            FontSize="25"/>
+                    <RadioButton 
+                    Command ="{Binding AddToOrderCommand}"
+                       
+                        Style="{StaticResource addButtton}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Tag="{StaticResource color5}"
+                    IsChecked="True"
+                             >
+                        <fa:IconImage  Icon="Plus" Style="{StaticResource ResourceKey=AddCategory}" />
+                    </RadioButton>
+                    <TextBlock Text="{Binding Sum}" Width="133" Height="27"/>
                 </StackPanel>
-                
 
             </Border>
 
