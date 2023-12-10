@@ -55,14 +55,30 @@ namespace blanc.ViewModels
             }
         }
 
+        private ObservableCollection<Bill>? _billItems;
+        public ObservableCollection<Bill> BillItems
+        {
+            get => _billItems;
+            set { _billItems = value; OnPropertyChanged(nameof(BillItems)); }
+        }
 
-       
+        private double _sum;
+        public double Sum
+        {
+            get => _sum;
+            set
+            {
+                _sum = value;
+                OnPropertyChanged(nameof(Sum));
+            }
+        }
+
 
         public int seats {  get; set; }
         public string[]? OrderedItems { get; set; }
         public float Bill {  get; set; }
  
-        public ICommand MiniTableCr { get; private set; }
+        
         public ICommand AddTableCommand {  get; private set; }
         public ICommand RemoveTableCommand {  get; private set; }
         public ICommand AddBillCommand {  get; private set; }
@@ -73,15 +89,15 @@ namespace blanc.ViewModels
  
         public TablesViewModel() 
         {
-           /* MiniTableCr = new RelayCommand(ExecuteMiniTablesCommand);*/
-            AddTableCommand = new RelayCommand(AddTable);
+           
+             AddTableCommand = new RelayCommand(AddTable);
             OpenMiniTablesCommand = new RelayCommand(OpenMiniTables);
             RemoveTableCommand = new RelayCommand(RemoveTable, CanRemoveTable);
            
             Tables = new ObservableCollection<TableModel>();
 
-
-            CalculateTotalBill();
+          
+            
 
             string rawJson = File.ReadAllText(tablesJsn);
             List<TableModel>? table = JsonConvert.DeserializeObject<List<TableModel>>(rawJson);
@@ -96,7 +112,18 @@ namespace blanc.ViewModels
 
         }
 
-      
+        private double _sumForDataGrid;
+        public double SumForDataGrid
+        {
+            get => _sumForDataGrid;
+            set
+            {
+                _sumForDataGrid = value;
+                OnPropertyChanged(nameof(SumForDataGrid));
+            }
+        }
+
+       
 
         private Dictionary<int, MiniTable> openTables = new Dictionary<int, MiniTable>();
         private void OpenMiniTables()
@@ -128,7 +155,6 @@ namespace blanc.ViewModels
             {
                 tableId = Tables.Count + 1,
                 seats = seats
-
             };
             Tables.Add(newTable);
 
@@ -182,49 +208,8 @@ namespace blanc.ViewModels
 
 
 
-        private Dictionary<int, double> _tableBills;
-        public Dictionary<int, double> TableBills
-        {
-            get { return _tableBills; }
-            set
-            {
-                _tableBills = value;
-                OnPropertyChanged(nameof(TableBills));
-            }
-        }
 
-
-        private void CalculateTotalBill()
-        {
-
-            string billJson = File.ReadAllText(billJsn);
-            List<Bill> billItems = JsonConvert.DeserializeObject<List<Bill>>(billJson);
-
-            if (billItems == null) return;
-
-            var tableBills = new Dictionary<int, double>();
-            foreach (var item in billItems)
-            {
-                if (!tableBills.ContainsKey(item.tableId))
-                {
-                    tableBills[item.tableId] = 0;
-                }
-                tableBills[item.tableId] += item.Price * item.Quantity;
-            }
-
-            TableBills = tableBills;
-            ConvertDictionaryToCollection();
-            OnPropertyChanged(nameof(TableBillsCollection));
-        }
-
-        public ObservableCollection<Bill> TableBillsCollection { get; set; }
-
-        private void ConvertDictionaryToCollection()
-        {
-            TableBillsCollection = new ObservableCollection<Bill>(
-                TableBills.Select(kvp => new Bill { tableId = kvp.Key, BillTotal = kvp.Value })
-            );
-        }
+      
 
     }
 

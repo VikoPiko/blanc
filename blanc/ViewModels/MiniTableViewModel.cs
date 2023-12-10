@@ -45,7 +45,7 @@ namespace blanc.ViewModels
         private Bill _selectedOrder;
         public Bill SelectedOrder
         {
-            get =>  _selectedOrder; 
+            get => _selectedOrder;
             set
             {
                 _selectedOrder = value;
@@ -56,14 +56,14 @@ namespace blanc.ViewModels
 
         private ObservableCollection<Orders> _orders;
         public ObservableCollection<Orders> _Orders
-        { 
+        {
             get => _orders;
-            set 
+            set
             {
-                _orders = value;    
+                _orders = value;
                 OnPropertyChanged(nameof(_Orders));
             }
-            
+
         }
 
         private ObservableCollection<Menu>? _menuItems;
@@ -76,14 +76,15 @@ namespace blanc.ViewModels
             get => _billItems;
             set { _billItems = value; OnPropertyChanged(nameof(BillItems)); }
         }
+
         private Menu? _selectedItems;
         public ObservableCollection<Menu> MenuItems
         {
             get => _menuItems;
             set { _menuItems = value; OnPropertyChanged(nameof(MenuItems)); }
         }
-      
-    
+
+
         private Menu _selectedMenuItem;
         public Menu SelectedItem
         {
@@ -119,31 +120,32 @@ namespace blanc.ViewModels
             }
         }*/
 
-        /*public ICommand ClearTableCommand { get; private set; }*/
+        public ICommand ClearTableCommand { get; private set; }
+
 
         public ICommand CalculateSumCommand { get; private set; }
 
         public ICommand RemoveFromBillCommand { get; private set; }
         public ICommand AddToBillCommand { get; private set; }
         public ICommand AddToOrderCommand { get; private set; }
-     
+
 
         public MiniTableViewModel()
         {
-            AddToOrderCommand = new RelayCommand(AddToOrder);           
+            AddToOrderCommand = new RelayCommand(AddToOrder);
             BillItems = new ObservableCollection<Bill>();
             MenuItems = new ObservableCollection<Menu>();
             _Orders = new ObservableCollection<Orders>();
             AddToBillCommand = new RelayCommand(AddToBill);
             RemoveFromBillCommand = new RelayCommandWithObject(RemoveFromBill);
             CalculateSumCommand = new RelayCommand(CalculateSum);
-            /* ClearTableCommand = new RelayCommand(ClearTable);*/
+             ClearTableCommand = new RelayCommand(ClearTable);
 
             // Presumably, you would load your menu items here or in a method called by the constructor
             LoadMenuItems();
         }
 
-       
+
 
         public void CalculateSum()
         {
@@ -218,48 +220,43 @@ namespace blanc.ViewModels
 
             string orders = JsonConvert.SerializeObject(_Orders, Formatting.Indented);
             File.WriteAllText("Orders.json", orders);
+
+
+
         }
 
 
 
-        /*  private void ClearTable()
-          {
-              if (SelectedTable != null)
-              {
-                  *//*
-                  // Прочетете съдържанието на Bill.json
-                  string billJson = File.ReadAllText(billJsn);
-                  List<Bill> bills = JsonConvert.DeserializeObject<List<Bill>>(billJson);
+        private void ClearTable()
+        {
+            if (SelectedTable != null)
+            {
+                // Read the contents of Bill.json
+                string billJson = File.ReadAllText(billJsn);
+                List<Bill> bills = JsonConvert.DeserializeObject<List<Bill>>(billJson);
 
-                  // Филтриране на записите, които НЕ са за избраната маса
-                  bills = bills.Where(bill => bill.tableId != SelectedTable.tableId).ToList();
+                // Filter the records that are NOT for the selected table
+                bills = bills.Where(bill => bill.tableId != SelectedTable.tableId).ToList();
 
-                  // Запис на филтрираните данни обратно в Bill.json
-                  File.WriteAllText(billJsn, JsonConvert.SerializeObject(bills));
+                // Write the filtered data back to Bill.json
+                File.WriteAllText(billJsn, JsonConvert.SerializeObject(bills));
 
-                  *//*
+                // Read and filter Tables.json
+                string tablesJson = File.ReadAllText(tablesJsn);
+                List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(tablesJson);
+                tables = tables.Where(table => table.tableId != SelectedTable.tableId).ToList();
 
-                  string billJson = File.ReadAllText(billJsn);
-                  List<Bill> bills = JsonConvert.DeserializeObject<List<Bill>>(billJson);
-                  bills = bills.Where(bill => bill.tableId != SelectedTable.tableId).ToList();
-                  File.WriteAllText(billJsn, JsonConvert.SerializeObject(bills));
+                // Write the filtered data back to Tables.json
+                File.WriteAllText(tablesJsn, JsonConvert.SerializeObject(tables));
 
-                  // Прочетете и филтрирайте Tables.json
-                  string tablesJson = File.ReadAllText(tablesJsn);
-                  List<TableModel> tables = JsonConvert.DeserializeObject<List<TableModel>>(tablesJson);
-                  tables = tables.Where(table => table.tableId != SelectedTable.tableId).ToList();
-                  File.WriteAllText(tablesJsn, JsonConvert.SerializeObject(tables));
-
-
-                  // Обновяване на UI
-                  BillItems.Clear();
-                  // Може да има още логика за обновяване на UI тук
-                  CloseAction?.Invoke();
+                // Update the UI
+                BillItems.Clear();
+                _Orders.Clear(); // Clear orders as well
+                                 // Additional UI update logic can be added here
+                CloseAction?.Invoke();
+            }
 
 
-              }*/
-
-
-
+        }
     }
 }

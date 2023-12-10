@@ -127,8 +127,8 @@
                     
                     <DataGridTextColumn Header="Id#" Binding="{Binding tableId}" Width="50"/>
                     <DataGridTextColumn Header="Num" Binding="{Binding seats}" Width="*"/>
-                    <DataGridTextColumn Header="Bill" Binding="{Binding Sum}" Width="*"/>
-
+                    <DataGridTextColumn Header="Bill" Binding="{Binding SumForDataGrid}" Width="*"/>
+                   
                     <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
