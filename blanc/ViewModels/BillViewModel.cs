@@ -8,5 +8,8 @@ namespace blanc.ViewModels
 {
     public class BillViewModel : ViewModelBase
     {
+
+
+
     }
 }
